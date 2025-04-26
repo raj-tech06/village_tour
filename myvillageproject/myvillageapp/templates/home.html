@@ -1,0 +1,10 @@
+{% extends 'common.html' %}
+
+{% block content %}
+<h1>Welcome to the Digital Village Tour!</h1>
+<ul>
+    {% for tour in tours %}
+        <li>{{ tour.name }} - {{ tour.date }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

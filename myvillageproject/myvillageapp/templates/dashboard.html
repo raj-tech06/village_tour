@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Digital Village Tour</title>
+    <title>Dashboard - Digital Village Tour</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS CDN -->
@@ -35,26 +35,46 @@
                         <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'register' %}">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Login</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
                     </li>
-
-
                 </ul>
-
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
+    <!-- Dashboard Content -->
     <div class="container my-4">
-        {% block content %}
-        {% endblock %}
+        <h1>Welcome to Your Dashboard, {{ user.username }}!</h1>
+        <p>This is your personal dashboard. Here you can manage your profile, view your activities, etc.</p>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Profile Info</h5>
+                        <p class="card-text">View and update your profile details.</p>
+                        <a href="{% url 'view_profile' %}" class="btn btn-primary">View Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Your Posts</h5>
+                        <p class="card-text">View all your posts and contributions.</p>
+                        <a href="#" class="btn btn-primary">View Posts</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Notifications</h5>
+                        <p class="card-text">See recent notifications and updates.</p>
+                        <a href="#" class="btn btn-primary">View Notifications</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->

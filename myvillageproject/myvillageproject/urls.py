@@ -1,5 +1,5 @@
 """
-URL configuration for myvillageproject project.
+URL configuration for digital_village_tour project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
@@ -16,11 +16,32 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+
+
+from django.urls import path
 from myvillageapp import views
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
 
-]
+
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('village-life/', views.village_life, name='village_life'),
+    path('gallery/', views.gallery, name='gallery'),
+    path('festivals/', views.festivals, name='festivals'),
+    path('contact/', views.contact, name='contact'),
+    path('login/', views.login_view, name='login'),
+    path('register/', views.register_view, name='register'),
+    path('dashboard/', views.dashboard_view, name='dashboard'),  
+    path('profile/', views.view_profile, name='view_profile'),
+    path('profile/update/', views.update_profile, name='update_profile'),
+    path('profile/', views.view_profile, name='profile'),
+
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 

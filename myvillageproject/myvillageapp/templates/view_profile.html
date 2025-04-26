@@ -1,0 +1,70 @@
+{% extends 'common.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Your Profile</h2>
+
+    <!-- Profile Image Section -->
+    <div class="text-center mb-4">
+        <h5>Current Profile Picture:</h5>
+        {% if profile.profile_pic %}
+            <img src="{{ profile.profile_pic.url }}" alt="Profile Image" width="150" height="150" class="rounded-circle border">
+        {% else %}
+            <img src="{% static 'default-avatar.png' %}" alt="Default Avatar" width="150" height="150" class="rounded-circle border">
+        {% endif %}
+    </div>
+
+    <!-- User Information Section -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-6">
+            <h5>User Information</h5>
+            <table class="table">
+                <tr>
+                    <th>Username</th>
+                    <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <th>Full Name</th>
+                    <td>{{ user.first_name }} {{ user.last_name }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Form to Update Profile -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h5>Update Profile Information</h5>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <!-- Field to Update Username -->
+                <div class="form-group">
+                    <label for="user">New Username</label>
+                    <input type="text" class="form-control" name="user" value="{{ user.username }}" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="email">New Email</label>
+                    <input type="email" name="email" class="form-control" value="{{ user.email }}" required>
+                </div>
+                                
+
+                <!-- Field to Update Profile Picture -->
+                <div class="form-group">
+                    <label for="profile_pic">Update Profile Picture</label>
+                    <input type="file" class="form-control" name="profile_pic">
+                </div>
+
+                <button type="submit" class="btn btn-success w-100">Update Profile</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
