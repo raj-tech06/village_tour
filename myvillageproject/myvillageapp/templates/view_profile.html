@@ -4,10 +4,10 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h2 class="text-center">Your Profile</h2>
+    <h2 class="text-right" >Your Profile</h2>
 
     <!-- Profile Image Section -->
-    <div class="text-center mb-4">
+    <div class="text-right mb-4">
         <h5>Current Profile Picture:</h5>
         {% if profile.profile_pic %}
             <img src="{{ profile.profile_pic.url }}" alt="Profile Image" width="150" height="150" class="rounded-circle border">
@@ -17,7 +17,7 @@
     </div>
 
     <!-- User Information Section -->
-    <div class="row justify-content-center mb-4">
+    <div class="row justify-content-right mb-4">
         <div class="col-md-6">
             <h5>User Information</h5>
             <table class="table">
@@ -31,14 +31,14 @@
                 </tr>
                 <tr>
                     <th>Full Name</th>
-                    <td>{{ user.first_name }} {{ user.last_name }}</td>
+                    <td>{{ user.full_name }}</td>
                 </tr>
             </table>
         </div>
     </div>
 
     <!-- Form to Update Profile -->
-    <div class="row justify-content-center">
+    <div class="row justify-content-right">
         <div class="col-md-6">
             <h5>Update Profile Information</h5>
             <form method="POST" enctype="multipart/form-data">

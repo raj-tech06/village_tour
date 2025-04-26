@@ -24,24 +24,27 @@ from myvillageapp import views
 
 
 
-from django.conf import settings
-from django.conf.urls.static import static
+# from django.conf import settings
+# from django.conf.urls.static import static
 
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('village-life/', views.village_life, name='village_life'),
-    path('gallery/', views.gallery, name='gallery'),
-    path('festivals/', views.festivals, name='festivals'),
-    path('contact/', views.contact, name='contact'),
-    path('login/', views.login_view, name='login'),
-    path('register/', views.register_view, name='register'),
-    path('dashboard/', views.dashboard_view, name='dashboard'),  
+    path('register/', views.register, name='register'),
+    path('registerdata/', views.registerdata, name='registerdata'),
+    path('login/', views.login, name='login'),
+    path('logindata/', views.logindata, name='logindata'),    
+    # path('village-life/', views.village_life, name='village_life'),
+    # path('gallery/', views.gallery, name='gallery'),
+    # path('festivals/', views.festivals, name='festivals'),
+    # path('contact/', views.contact, name='contact'),
+    path('dashboard/', views.dashboard, name='dashboard'),  
     path('profile/', views.view_profile, name='view_profile'),
-    path('profile/update/', views.update_profile, name='update_profile'),
-    path('profile/', views.view_profile, name='profile'),
+    # path('profile/update/', views.update_profile, name='update_profile'),
+    # path('profile/', views.view_profile, name='profile'),
 
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] 
+# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
