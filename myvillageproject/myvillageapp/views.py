@@ -11,8 +11,6 @@ def home(request):
 def dashboard(request):
     return render(request, 'dashboard.html')
 
-def view_profile(request):
-    return render(request, 'view_profile.html')
 
 def village_life(request):
     return render(request, 'village_life.html')
@@ -28,6 +26,7 @@ def contact(request):
 
 def register(request):
     return render(request, 'register.html')
+
 def registerdata(req):
     if req.method == 'POST':
 
@@ -37,10 +36,18 @@ def registerdata(req):
         Pass1=req.POST.get('password')
         cpass1=req.POST.get('confirm_password')
 
+        # check for empty fields
         user=User.objects.filter(email=Eml)
         if user:
             msg='email already exists'
             return render(req,'register.html',{'msg':msg})
+        
+        # check for username
+        user_username = User.objects.filter(username=Uname)
+        if user_username:
+            msg = 'Username already exists'
+            return render(req, 'register.html', {'msg': msg})
+                
 
         else:
 
@@ -107,6 +114,8 @@ def registerdata(req):
         msg='please fill the form'
         return render(req,'register.html',{'msg':msg})
 
+
+
 def login(request):
     return render(request, 'login.html')
 
@@ -134,15 +143,8 @@ def logindata(request):
 
 
         
-
-    
-
-
-
-
-
-
-
+def profile(request):
+    return render(request, 'profile.html')
 
 
 
