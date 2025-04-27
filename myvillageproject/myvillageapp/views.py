@@ -9,7 +9,8 @@ def home(request):
     return render(request, 'home.html')
 
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    msg = 'login 1st!'
+    return render(request, 'dashboard.html',{'msg': msg})
 
 
 def village_life(request):
@@ -129,8 +130,13 @@ def logindata(request):
         user=User.objects.get(email=Eml)
         if user:
             if user.password==Pass1:
+                databreak={
+                    'username':user.username,
+                    'email':user.email,
+                    'password':user.password
+                }
                 msg='successfully logged in'
-                return render(request,'dashboard.html',{'msg':msg})
+                return render(request,'dashboard.html',{'msg':msg, 'user':databreak})
             else:
                 msg='invalid password'
                 return render(request,'login.html',{'msg':msg})
@@ -141,10 +147,18 @@ def logindata(request):
         msg='please fill the form'
         return render(request,'login.html',{'msg':msg})
 
-
-        
 def profile(request):
     return render(request, 'profile.html')
+        
+def profile1(request,pk):
+    user=User.objects.get(id=pk)
+    databreak={
+                    'username':user.username,
+                    'email':user.email,
+                    'password':user.password
+                }
+
+    return render(request, 'profile.html',{'user':databreak})
 
 
 

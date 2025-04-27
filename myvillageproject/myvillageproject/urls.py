@@ -40,8 +40,9 @@ urlpatterns = [
     # path('contact/', views.contact, name='contact'),
     path('dashboard/', views.dashboard, name='dashboard'),  
     path('profile/', views.profile, name='profile'),
+    path('profile1/<int:pk>', views.profile1, name='profile1'),
+
     # path('profile/update/', views.update_profile, name='update_profile'),
-    # path('profile/', views.view_profile, name='profile'),
 
 
 ] 
