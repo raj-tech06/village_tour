@@ -54,7 +54,9 @@
                         <h5 class="card-title">Profile Info</h5>
                         <p class="card-text">View and update your profile details.</p>
                         {% if user %}
-                        {% comment %} <a href="{% url 'profile1' pk=user.id %}" class="btn btn-primary">View Profile</a> {% endcomment %}
+                        <a href="{% url 'profile1' pk=user.id %}" class="btn btn-primary">View Profile</a>
+                        <a href="{% url 'profile' %}" class="btn btn-primary">View Profile</a>
+                        
                         {% else %}
                         <a href="{% url 'profile'  %}" class="btn btn-primary">View Profile</a>
                         {% endif %}
