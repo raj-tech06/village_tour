@@ -1,3 +1,9 @@
+{% extends 'common.html' %}
+{% load static %}
+
+{% block content %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,37 +16,6 @@
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}">Digital Village</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        {% comment %} <a class="nav-link" href="{% url 'village_life' %}">Village Life</a> {% endcomment %}
-                    </li>
-                    <li class="nav-item">
-                        {% comment %} <a class="nav-link" href="{% url 'gallery' %}">Gallery</a> {% endcomment %}
-                    </li>
-                    <li class="nav-item">
-                        {% comment %} <a class="nav-link" href="{% url 'festivals' %}">Festivals</a> {% endcomment %}
-                    </li>
-                    <li class="nav-item">
-                        {% comment %} <a class="nav-link" href="{% url 'contact' %}">Contact</a> {% endcomment %}
-                    </li>
-                    <li class="nav-item">
-                        {% comment %} <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a> {% endcomment %}
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
     <!-- Dashboard Content -->
     <div class="container my-4">
@@ -54,7 +29,7 @@
                         <h5 class="card-title">Profile Info</h5>
                         <p class="card-text">View and update your profile details.</p>
                         {% if user %}
-                        <a href="{% url 'profile1' pk=user.id %}" class="btn btn-primary">View Profile</a>
+                        {% comment %} <a href="{% url 'profile1' pk=user.id %}" class="btn btn-primary">View Profile</a> {% endcomment %}
                         <a href="{% url 'profile' %}" class="btn btn-primary">View Profile</a>
                         
                         {% else %}
@@ -93,3 +68,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+{% endblock %}
