@@ -1,0 +1,16 @@
+/* 
+  .btn-gradient-primary {
+    background: linear-gradient(135deg, #00b4db, #0083b0);
+    color: white;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .btn-gradient-primary:hover {
+    background: linear-gradient(135deg, #0083b0, #00b4db);
+    box-shadow: 0 0 10px rgba(0, 131, 176, 0.5);
+  }
+
+  .nav-link:hover {
+    color: #0083b0 !important;
+  }
+ */

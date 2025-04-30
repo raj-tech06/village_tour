@@ -8,6 +8,10 @@ from .models import User
 def home(request):
     return render(request, 'home.html')
 
+def about(request):
+    return render(request, 'about.html')
+
+
 def dashboard(request):
     msg = 'login 1st!'
     return render(request, 'dashboard.html',{'msg': msg})
