@@ -1,15 +1,57 @@
 {% extends 'common.html' %}
+{% load static %}
+
+{% block title %}Village Life{% endblock %}
 
 {% block content %}
-    <section class="village-life">
-        <h2>Village Life</h2>
-        <p>Morning rituals, farming practices, and local crafts.</p>
-        <ul>
-            <li>Morning prayers at the [Temple Name]</li>
-            <li>Sustainable farming techniques</li>
-            <li>Handcrafted pottery and weaving passed down from generations</li>
-        </ul>
 
-        <a href="#">View Photo Gallery</a>
-    </section>
+<div class="container">
+  {% comment %} Repeat this block for each item {% endcomment %}
+  
+  <div class="row mb-4 align-items-center">
+    <div class="col-md-3">
+      <div class="list-group-item d-flex justify-content-center align-items-center" style="height: 300px;">
+      Morning gaon
+      </div>
+    </div>
+    <div class="col-md-9">
+      <img src="{% static 'img/morning gaon1.avif' %}" alt="Village Life" style="width: 100%; height: 300px; object-fit: cover;" />
+    </div>
+  </div>
+
+  <div class="row mb-4 align-items-center">
+    <div class="col-md-3">
+      <div class="list-group-item d-flex justify-content-center align-items-center" style="height: 300px;">
+        Gaon ke log subah suraj nikalte hi uthkar apne ghar ke angan mein ya mandir mein puja aur aarti karte hain.
+        log prakriti ki stuti karte hain, jaise "Surya Namaskar" ya "Surya Devta ki puja".     </div>
+    </div>
+    <div class="col-md-9">
+      <img src="{% static 'img/pooja gaon1.jpg' %}" alt="Village Life" style="width: 100%; height: 300px; object-fit: cover;" />
+    </div>
+  </div>
+
+  <div class="row mb-4 align-items-center">
+    <div class="col-md-3">
+      <div class="list-group-item d-flex justify-content-center align-items-center" style="height: 300px;">
+        Item 3
+      </div>
+    </div>
+    <div class="col-md-9">
+      <img src="{% static 'img/pranpura gaon1.cms' %}" alt="Village Life" style="width: 100%; height: 300px; object-fit: cover;" />
+    </div>
+  </div>
+
+  <div class="row mb-4 align-items-center">
+    <div class="col-md-3">
+      <div class="list-group-item d-flex justify-content-center align-items-center" style="height: 300px;">
+        Item 4
+      </div>
+    </div>
+    <div class="col-md-9">
+      <img src="{% static 'img/pranpura gaon1.cms' %}" alt="Village Life" style="width: 100%; height: 300px; object-fit: cover;" />
+    </div>
+  </div>
+
+</div>
+
 {% endblock %}
