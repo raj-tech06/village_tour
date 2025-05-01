@@ -137,6 +137,7 @@ def logindata(request):
                 databreak={
                     'username':user.username,
                     'email':user.email,
+                    'phone': user.phone,
                     'password':user.password
                 }
                 msg='successfully logged in'
@@ -168,38 +169,23 @@ def profile1(request,pk):
 
 
 
-# from .models import Profile
-
-# def update_profile(request):
-#     profile = Profile.objects.get(user=request.user)
-
-#     if request.method == 'POST':
-#         user = request.user
-#         user = request.email
-
-#         user.username = request.POST.get('user')
-#         user.email = request.POST.get('email')
-
-#         if 'profile_pic' in request.FILES:
-#             profile.profile_pic = request.FILES['profile_pic']
-
-#         user.save()
-#         profile.save()
-
-#         messages.success(request, "Profile updated successfully.")
-#         return redirect('profile')
-
-#     return render(request, 'update_profile.html', {'profile': profile})
 
 
+from django.contrib.auth.decorators import login_required
 
+@login_required
+def profile(request):
+    user = request.user  # Get the logged-in user
 
+    if request.method == 'POST':
+        user.username = request.POST.get('name')
+        user.email = request.POST.get('email')
+        user.phone = request.POST.get('phone')  # Update the phone number
+        user.save()  # Save the changes
 
+        return redirect('profile')  # Redirect to the profile page after saving
 
-
-
-
-
+    return render(request, 'profile.html', {'user': user})
 
 
 
