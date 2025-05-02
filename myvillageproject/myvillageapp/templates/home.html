@@ -1,11 +1,31 @@
 {% extends 'common.html' %}
-
+{% load static %}
 {% block content %}
-<h1>Villages of Madhya Pradesh</h1>
+{% comment %} <h1>Villages of Madhya Pradesh</h1> {% endcomment %}
+<h1>Hello</h1>{{msg}}
 
-{{user.id}}
-{{user.username}}
+<p>Databreak: {{ databreak }}</p>
 
+{% comment %} {{user}} {% endcomment %}
+
+<p>User ID: {{ databreak.id }}</p>
+<p>User Username: {{ databreak.username }}</p>
+<p>User Email: {{ databreak.email }}</p>
+<p>User Phone: {{ databreak.phone }}</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} 
 <div class="container py-5">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
     <!-- Tour Card 1 -->
@@ -320,7 +340,7 @@
 
 
 
-
+ {% endcomment %}
 
 
 

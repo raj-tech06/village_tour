@@ -29,20 +29,25 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', views.home, name='home'),
+    path('home1/<int:pk>', views.home1, name='home1'),
     path('about', views.about, name='about'),
+    path('about1/<int:pk>', views.about1, name='about1'),
     path('register/', views.register, name='register'),
     path('registerdata/', views.registerdata, name='registerdata'),
     path('login/', views.login, name='login'),
     path('logindata/', views.logindata, name='logindata'),    
     path('village-life/', views.village_life, name='village_life'),
-    path('gallery/', views.gallery, name='gallery'),
+    path('village-life1/<int:pk>', views.village_life1, name='village_life1'),
     path('festivals/', views.festivals, name='festivals'),
+    path('festivals1/<int:pk>', views.festivals1, name='festivals1'),
     path('contact/', views.contact, name='contact'),
-    path('dashboard/', views.dashboard, name='dashboard'),  
+    path('contact1/<int:pk>', views.contact1, name='contact1'),
+    path('dashboard/', views.dashboard, name='dashboard'), 
+    path('dashboard1/<int:pk>', views.dashboard1, name='dashboard1'), 
     path('profile/', views.profile, name='profile'),
     path('profile1/<int:pk>', views.profile1, name='profile1'),
-
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

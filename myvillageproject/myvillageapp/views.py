@@ -8,26 +8,111 @@ from .models import User
 def home(request):
     return render(request, 'home.html')
 
+def home1(request,pk):
+    user=User.objects.get(id=pk)
+    databreak={
+                'id':user.id,
+                'username':user.username,
+                'email':user.email,
+                'phone': user.phone,
+                'password':user.password
+              }
+
+    msg='successfully logged in'
+    return render(request,'home.html',{'msg':msg, 'user':databreak})
+
+# -------------------------------------home end--------------------------
+
 def about(request):
     return render(request, 'about.html')
+
+def about1(request,pk):
+    user=User.objects.get(id=pk)
+    databreak={
+                'id':user.id,
+                'username':user.username,
+                'email':user.email,
+                'phone': user.phone,
+                'password':user.password
+              }
+    msg='successfully logged in'
+    return render(request,'dashboard.html',{'msg':msg, 'user':databreak})
+
+
+# -------------------------------------about end--------------------------
 
 
 def dashboard(request):
     msg = 'login 1st!'
     return render(request, 'dashboard.html',{'msg': msg})
 
+def dashboard1(request,pk):
+        user=User.objects.get(id=pk)
+        databreak={
+            'id':user.id,
+            'username':user.username,
+            'email':user.email,
+            'phone': user.phone,
+            'password':user.password
+        }
+        msg='successfully logged in'
+        return render(request,'dashboard.html',{'msg':msg, 'user':databreak})
+            
+            
+# -------------------------------------dashboard end--------------------------
+
 
 def village_life(request):
     return render(request, 'village_life.html')
 
-def gallery(request):
-    return render(request, 'gallery.html')
+def village_life1(request,pk):
+        user=User.objects.get(id=pk)
+        databreak={
+            'id':user.id,
+            'username':user.username,
+            'email':user.email,
+            'phone': user.phone,
+            'password':user.password
+        }
+        msg='successfully logged in'
+        return render(request,'dashboard.html',{'msg':msg, 'user':databreak})
+            
+
+# -------------------------------------village_life end--------------------------
 
 def festivals(request):
     return render(request, 'festivals.html')
 
+def festivals1(request,pk):
+        user=User.objects.get(id=pk)
+        databreak={
+            'id':user.id,
+            'username':user.username,
+            'email':user.email,
+            'phone': user.phone,
+            'password':user.password
+        }
+        msg='successfully logged in'
+        return render(request,'dashboard.html',{'msg':msg, 'user':databreak})
+            
+# -----------------------------------fastivals end--------------------------
 def contact(request):
     return render(request, 'contact.html')
+
+def contact1(request,pk):
+        user=User.objects.get(id=pk)
+        databreak={
+            'id':user.id,
+            'username':user.username,
+            'email':user.email,
+            'phone': user.phone,
+            'password':user.password
+        }
+        msg='successfully logged in'
+        return render(request,'dashboard.html',{'msg':msg, 'user':databreak})
+            
+# -----------------------------------contact end--------------------------
+
 
 def register(request):
     return render(request, 'register.html')
@@ -119,6 +204,7 @@ def registerdata(req):
         msg='please fill the form'
         return render(req,'register.html',{'msg':msg})
 
+# -----------------------------------register end--------------------------
 
 
 def login(request):
@@ -135,6 +221,7 @@ def logindata(request):
         if user:
             if user.password==Pass1:
                 databreak={
+                    'id': user.id,
                     'username':user.username,
                     'email':user.email,
                     'phone': user.phone,
@@ -152,6 +239,10 @@ def logindata(request):
         msg='please fill the form'
         return render(request,'login.html',{'msg':msg})
 
+
+# -----------------------------------login end--------------------------
+
+
 def profile(request):
     return render(request, 'profile.html')
 
@@ -159,6 +250,7 @@ def profile(request):
 def profile1(request,pk):
     user=User.objects.get(id=pk)
     databreak={
+                    'id':user.id,
                     'username':user.username,
                     'email':user.email,
                     'password':user.password
@@ -167,70 +259,4 @@ def profile1(request,pk):
     return render(request, 'profile.html',{'user':databreak})
 
 
-
-
-
-
-from django.contrib.auth.decorators import login_required
-
-@login_required
-def profile(request):
-    user = request.user  # Get the logged-in user
-
-    if request.method == 'POST':
-        user.username = request.POST.get('name')
-        user.email = request.POST.get('email')
-        user.phone = request.POST.get('phone')  # Update the phone number
-        user.save()  # Save the changes
-
-        return redirect('profile')  # Redirect to the profile page after saving
-
-    return render(request, 'profile.html', {'user': user})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#   ------------------- Profile end -------------------

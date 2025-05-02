@@ -14,7 +14,48 @@
 </head>
 <body>
 
+  {% if databreak %}
+<!----------pk---navbar- start------------->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 sticky-top" style="backdrop-filter: blur(10px);">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-primary fs-3" href="#">VillageTour</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-2">
+          {% comment %} <a class="nav-link fw-semibold text-dark" href="{% url 'home1' pk=user.id %}">Home</a> {% endcomment %}
+          <a class="nav-link fw-semibold text-dark" href="{% url 'home1' pk=databreak.id %}">Home</a>
 
+        </li>
+        <li class="nav-item mx-2">
+          {% comment %} <a class="nav-link fw-semibold text-dark" href="{% url 'village_life1' pk=user.id %}">village_life</a> {% endcomment %}
+          <a class="nav-link fw-semibold text-dark" href="{% url 'village_life1' pk=databreak.id %}">village_life</a>
+        </li>
+        {% comment %} <li class="nav-item mx-2">
+          <a class="nav-link fw-semibold text-dark" href="{% url 'about' %}">About</a>
+        </li> {% endcomment %}
+        <li class="nav-item mx-2">
+          {% comment %} <a class="nav-link fw-semibold text-dark" href="{% url 'contact1' pk=user.id %}">Contact</a> {% endcomment %}
+          <a class="nav-link fw-semibold text-dark" href="{% url 'contact1' pk=databreak.id %}">Contact</a>
+        </li>
+        <li class="nav-item mx-2">
+            {% comment %} <a class="nav-link fw-semibold text-dark" href="{% url 'dashboard1' pk=user.id %}">Dashboard</a> {% endcomment %}
+            <a class="nav-link fw-semibold text-dark" href="{% url 'dashboard1' pk=databreak.id %}">Dashboard</a>
+        </li>        
+        <li class="nav-item mx-2">
+            <a class="btn btn-gradient-primary rounded-pill px-4 ms-lg-3" href="{% url 'home' %}">Logout</a>
+        </li>       
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-------------pk navbar- end------------->
+
+{% else %}
+
+<!------------normal -navbar-start------------->
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 sticky-top" style="backdrop-filter: blur(10px);">
   <div class="container">
     <a class="navbar-brand fw-bold text-primary fs-3" href="#">VillageTour</a>
@@ -51,6 +92,8 @@
     </div>
   </div>
 </nav>
+<!-------------normal navbar- end------------->
+{% endif %}
 
 <!-- Optional Gradient Button Styling -->
 <style>
