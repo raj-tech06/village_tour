@@ -36,7 +36,7 @@ def about1(request,pk):
                 'password':user.password
               }
     msg='successfully logged in'
-    return render(request,'dashboard.html',{'msg':msg, 'user':databreak})
+    return render(request,'contact.html',{'msg':msg, 'user':databreak})
 
 
 # -------------------------------------about end--------------------------
@@ -75,7 +75,7 @@ def village_life1(request,pk):
             'password':user.password
         }
         msg='successfully logged in'
-        return render(request,'dashboard.html',{'msg':msg, 'user':databreak})
+        return render(request,'village_life.html',{'msg':msg, 'user':databreak})
             
 
 # -------------------------------------village_life end--------------------------
@@ -93,7 +93,7 @@ def festivals1(request,pk):
             'password':user.password
         }
         msg='successfully logged in'
-        return render(request,'dashboard.html',{'msg':msg, 'user':databreak})
+        return render(request,'festivals.html',{'msg':msg, 'user':databreak})
             
 # -----------------------------------fastivals end--------------------------
 def contact(request):
@@ -109,7 +109,7 @@ def contact1(request,pk):
             'password':user.password
         }
         msg='successfully logged in'
-        return render(request,'dashboard.html',{'msg':msg, 'user':databreak})
+        return render(request,'contact.html',{'msg':msg, 'user':databreak})
             
 # -----------------------------------contact end--------------------------
 

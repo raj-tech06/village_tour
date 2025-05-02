@@ -49,6 +49,8 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('profile1/<int:pk>', views.profile1, name='profile1'),
 
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
