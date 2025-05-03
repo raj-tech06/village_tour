@@ -1,14 +1,231 @@
 {% extends 'common.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
 
 {% block content %}
-    <section class="contact">
-        <h2>Contact Us</h2>
-        <p>Reach out to us via email at [email@example.com]</p>
+ 
 
-        <h3>Have questions?</h3>
-        <form action="#" method="post">
-            <textarea name="message" placeholder="Your message here..."></textarea>
-            <button type="submit">Send Message</button>
+<style>
+
+    body {
+
+      overflow-x: hidden;    
+      width: '100%';  
+      height: 50%;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+
+
+    h2 {
+      padding: 20px;  
+      text-align: center;
+      margin-top: 10px;
+      color: #333;
+    }
+
+
+
+
+    .container1{
+      width: 45%;
+      height: 30%;
+      margin-left:60%;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .column0 {
+        margin-top: -50%;    
+        margin-left: 120px;
+    }
+    .sendbtn{
+        margin-left: 60px;
+    }
+    form label {
+      margin-top: -40%;  
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    form input, form textarea {
+      text-align: center;
+      width: 50%;
+      margin-top: -10px;    
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      resize: vertical;
+    }
+
+    form button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background: #0056b3;
+    }
+
+    .contact-info p {
+      margin: 10px 0;
+    }
+
+    .social-icons a {
+      margin-right: 10px;
+      text-decoration: none;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .social-icons a:hover {
+      color: #007bff;
+    }
+    .contact-info1 {
+      margin-left: -120%;  
+      padding: 20px;
+      margin-top: 30px;
+      background: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* ========== Responsive ========== */
+    @media (max-width: 1024px) {
+      .container1 {
+        width: 85%;
+        margin-left: 10%;
+      }
+
+      .contact-info1 {
+        background: none;
+        width: 100%;
+        background-color: rgba(245, 245, 220, 0.813);
+        text-align: center;
+        margin-left: 10px;
+        margin-top: -10px;
+      }
+  
+  
+      .column0 {
+        margin-top: 20px;
+        margin-left: 0;
+      }
+  
+      .contact-info1 {
+        margin-left: 0;
+      }
+  
+      form input,
+      form textarea {
+        width: 100%;
+      }
+  
+      .sendbtn {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  
+    @media (max-width: 600px) {
+      .container1 {
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .contact-info1 {
+        width: 88%;
+        margin-left: 16px;
+        margin-top: -10px;
+      }
+  
+      .column0 {
+        margin-top: 20px;
+      }
+      h3{
+        display: none;
+      }
+  
+      form input,
+      form textarea {
+        font-size: 16px;
+      }
+      h4{
+        text-align: center;
+      }
+      .social-icons {
+        text-align: center;
+      }
+      p{
+        text-align: center;
+      }
+  
+      .sendbtn {
+        font-size: 16px;
+      }
+    }
+  </style>
+ 
+
+  <div class="container1">
+    <h2>Contact Us</h2>
+    <div class="row">
+
+        
+      <!-- Contact Details -->
+    <div class="contact-info1">
+        <h3>Contact Information</h3>
+        <p><strong>Email:</strong> rjdeveloper07@gmail.com</p>
+        <p><strong>Phone:</strong> +91 7987496842</p>
+        <p><strong>Address:</strong> Bhopal, Madhya Pradesh, India</p>
+
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="bi bi-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="bi bi-instagram"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="bi bi-linkedin"></i></a>
+        </div>
+    </div>
+      <!-- Contact Form -->
+      <div class="column0">
+        <form>
+          <!-- <label for="name">Full Name</label> -->
+          <input type="text" id="name" placeholder="Your name" required>
+
+          <!-- <label for="email">Email Address</label> -->
+          <input type="email" id="email" placeholder="Your email" required>
+
+          <!-- <label for="subject">Subject</label> -->
+          <input type="text" id="subject" placeholder="Subject" required>
+
+          <!-- <label for="message">Message</label> -->
+          <textarea id="message" rows="5" placeholder="Your message..." required></textarea>
+
+<br>
+          <button type="submit" class="sendbtn">Send Message</button>
+          
         </form>
-    </section>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
 {% endblock %}
