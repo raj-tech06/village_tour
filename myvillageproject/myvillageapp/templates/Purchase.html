@@ -1,0 +1,179 @@
+{% extends 'common.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>गाँव के उत्पाद</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+        }
+        .product {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .product img {
+            width: 200px;
+            height: auto;
+            object-fit: cover;
+        }
+        .product-details {
+            padding: 15px;
+            flex: 1;
+        }
+        .product h2 {
+            margin: 0;
+            font-size: 24px;
+            color: #2c3e50;
+        }
+        .product p {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        .price {
+            font-size: 18px;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .link {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .product {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .product img {
+                width: 100%;
+                max-width: 400px;
+            }
+            .product-details {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product h2 {
+                font-size: 20px;
+            }
+            .product p {
+                font-size: 13px;
+            }
+            .price {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>गाँव के उत्पाद</h1>
+</header>
+
+<section>
+
+
+
+    <!-- Existing Product Cards (No change in content) -->
+    <div class="product">
+        <img src="{% static 'img/MITTI_BARTAN1.jpg' %}" alt="मिट्टी के बर्तन">
+        <div class="product-details">
+            <h2>मिट्टी के बर्तन</h2>
+            <p>गाँव में कुम्हार द्वारा बनाए गए पारंपरिक मिट्टी के दीये, कुल्हड़, घड़े आदि।</p>
+            <p class="price">₹150 - ₹500</p>
+            <a class="link" href="#">अधिक उत्पाद देखें</a>
+        </div>
+    </div>
+
+    <div class="product">
+        <img src="{% static 'img/murti.jpg' %}" alt="राजस्थानी महिला मूर्तियाँ">
+        <div class="product-details">
+            <h2>राजस्थानी महिला मूर्तियाँ</h2>
+            <p>हस्तनिर्मित और रंगीन मूर्तियाँ जो घर की सजावट के लिए उपयुक्त होती हैं।</p>
+            <p class="price">₹800 - ₹1500</p>
+            <a class="link" href="#">अधिक उत्पाद देखें</a>
+        </div>
+    </div>
+
+    <div class="product">
+        <img src="{% static 'img/bansh_utpad.webp' %}" alt="बांस के उत्पाद">
+        <div class="product-details">
+            <h2>बांस के उत्पाद</h2>
+            <p>गाँवों में बांस से बने विभिन्न उत्पाद जैसे टोकरी, झूले आदि।</p>
+            <p class="price">₹200 - ₹600</p>
+            <a class="link" href="#">अधिक उत्पाद देखें</a>
+        </div>
+    </div>
+
+    <div class="product">
+        <img src="{% static 'img/handcloths1.jpg' %}" alt="हथकरघा वस्त्र">
+        <div class="product-details">
+            <h2>हथकरघा वस्त्र</h2>
+            <p>गाँवों में बने पारंपरिक हाथ से बुने हुए कपड़े, शॉल, दुपट्टे आदि।</p>
+            <p class="price">₹500 - ₹1200</p>
+            <a class="link" href="#">अधिक उत्पाद देखें</a>
+        </div>
+    </div>
+
+    <div class="product">
+        <img src="{% static 'img/hasthshilp1.avif' %}" alt="संगठित हस्तशिल्प">
+        <div class="product-details">
+            <h2>हस्तशिल्प</h2>
+            <p>विभिन्न प्रकार के हस्तशिल्प जैसे लकड़ी की मूर्तियाँ, हस्तनिर्मित सजावट सामग्री।</p>
+            <p class="price">₹300 - ₹800</p>
+            <a class="link" href="#">अधिक उत्पाद देखें</a>
+        </div>
+    </div>
+
+    <div class="product">
+        <img src="{% static 'img/phal_sabji1.webp' %}" alt="ताजे फल">
+        <div class="product-details">
+            <h2>ताजे फल और सब्जियां</h2>
+            <p>गाँवों में उगाए गए ताजे फल जैसे आम, केला, नींबू आदि।</p>
+            <p class="price">₹50 - ₹200</p>
+            <a class="link" href="#">अधिक उत्पाद देखें</a>
+        </div>
+    </div>
+
+    <div class="product">
+        <img src="{% static 'img/utpad_gehu1.png' %}" alt="आर्गेनिक कृषि उत्पाद">
+        <div class="product-details">
+            <h2>ऑर्गेनिक उत्पाद</h2>
+            <p>गाँवों में उगाए गए आर्गेनिक गेहूँ, धान, मसाले आदि।</p>
+            <p class="price">₹100 - ₹500</p>
+            <a class="link" href="#">अधिक उत्पाद देखें</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

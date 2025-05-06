@@ -80,12 +80,13 @@ def village_life1(request,pk):
 
 # -------------------------------------village_life end--------------------------
 
-def festivals(request):
-    return render(request, 'festivals.html')
+def Purchase(request):
+    return render(request, 'Purchase.html')
 
-def festivals1(request,pk):
+def Purchase1(request,pk):
         user=User.objects.get(id=pk)
         databreak={
+
             'id':user.id,
             'username':user.username,
             'email':user.email,
@@ -93,7 +94,7 @@ def festivals1(request,pk):
             'password':user.password
         }
         msg='successfully logged in'
-        return render(request,'festivals.html',{'msg':msg, 'user':databreak})
+        return render(request,'Purchase.html',{'msg':msg, 'user':databreak})
             
 # -----------------------------------fastivals end--------------------------
 def contact(request):
