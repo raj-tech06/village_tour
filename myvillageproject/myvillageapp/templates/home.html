@@ -2,6 +2,11 @@
 
 {% load static %}
 
+
+{% block css %}
+      <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock css %}
+
 {% block content %}
 <h1>Villages of Madhya Pradesh</h1>
  
@@ -300,23 +305,7 @@
 
 
 
-<style>
-  .tour-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
 
-  .tour-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Responsive layout for mobile view */
-  @media (max-width: 576px) {
-    .tour-card {
-      max-width: 100%;
-    }
-  }
-</style>
 
 
 
