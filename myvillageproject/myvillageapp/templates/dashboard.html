@@ -10,7 +10,7 @@
 
 {% block content %}
 
-<style>
+{% comment %} <style>
   .profile-box {
     background-color: #f8f9fa;
     padding: 20px;
@@ -19,48 +19,71 @@
   .update-form {
     display: none;
   }
-</style>
+</style> {% endcomment %}
+
+{% load static %}
+
+
+
+
+
+{% load static %}
 
 <div class="container mt-5">
   <div class="row">
 
     <!-- Profile Section -->
     <div class="col-md-4">
-<div class="profile-box shadow-sm p-4 rounded-3" style="border: 2px solid #4CAF50; background-color: #f9f9f9; height: 400px; border-right: none; border-left: none;">
-    
-  {% if user.userprofile %}
-    <div style="border: 2px solid #4CAF50; border-radius: 15px; padding: 15px; background-color: #f0fff0; display: inline-block; margin-top: 15px;">
-      <span style="color: #333;">{{ user.userprofile }}</span>
+      <div class="profile-box shadow-sm p-4 rounded-3" style="border: 2px solid #4CAF50; background-color: #f9f9f9; height: auto; border-right: none; border-left: none; text-align: center;">
+
+        {% if user.id %}
+          {% if user.userprofile and user.userprofile.profile_image %}
+            <img src="{{ user.userprofile.profile_image.url }}" alt="Profile Image" style="height: 120px; width: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #4CAF50;">
+          {% else %}
+            <img src="/static/img/profile_defualt_img.jpg" alt="Default Profile" style="height: 120px; width: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #ccc;">
+          {% endif %}
+        {% endif %}
+
+        <span style="font-size: 1.5rem; font-weight: bold; color: #9cd214;">{{ user.username }}</span>
+        <hr>
+
+        <h4 style="font-size: 1rem; font-weight: bold; color: #4CAF50;"><span style="font-size: 1.2rem; font-weight: bold; color: #0f100f;">ID:</span> {{ user.id }}</h4>
+        <br>
+        <h4 style="font-size: 1rem; font-weight: bold; color: #4CAF50;"><span style="font-size: 1.2rem; font-weight: bold; color: #0f100f;">Name:</span> {{ user.username }}</h4>
+        <h4 style="font-size: 1rem; font-weight: bold; color: #4CAF50;"><span style="font-size: 1.2rem; font-weight: bold; color: #0f100f;">Phone:</span> {{ user.phone }}</h4>
+        <h4 style="font-size: 1rem; font-weight: bold; color: #4CAF50;"><span style="font-size: 1.2rem; font-weight: bold; color: #0f100f;">Email:</span> {{ user.email }}</h4>
+
+        <button class="btn btn-success mt-3" onclick="toggleForm()" style="font-size: 1rem; padding: 10px 20px; border-radius: 25px;">
+          Update Profile
+        </button>
+
+      </div>
     </div>
-  {% endif %}
 
 
 
-    <span style="font-size: 1.5rem; font-weight: bold; color: #9cd214; text-align: center;">{{user.username}}</span>
-<hr>
-<br>
-    <h4 style="font-size: 1rem; font-weight: bold; color: #4CAF50;"><span style="font-size: 1.2rem; font-weight: bold; color: #0f100f;">id:</span> {{user.id}}</h4>
 
-<br>
 
-    <h4 style="font-size: 1rem; font-weight: bold; color: #4CAF50;"><span style="font-size: 1.2rem; font-weight: bold; color: #0f100f;">Name:</span> {{user.username}}</h4>
-    <h4 style="font-size: 1rem; font-weight: bold; color: #4CAF50;"><span style="font-size: 1.2rem; font-weight: bold; color: #0f100f;">Phone:</span> {{user.phone}}</h4>
-    <h4 style="font-size: 1rem; font-weight: bold; color: #4CAF50;"><span style="font-size: 1.2rem; font-weight: bold; color: #0f100f;">Email:</span> {{user.email}}</h4>
 
-    <button class="btn btn-success mt-3" onclick="toggleForm()" style="font-size: 1rem; padding: 10px 20px; border-radius: 25px;">
-      Update Profile
-    </button>
 
-  </div>
-</div>
+
+
+
+
+
 
 
     <!-- Update Form Section -->
     <div class="col-md-8">
       <div id="updateForm" class="update-form">
         <h4 class="mb-3">Update Your Profile</h4>
-        <form action="{% url 'registerdata' %}" method="POST">
+        <form action="{% url 'registerdata' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
+
+          <div class="mb-3">
+            <label for="profile_image" class="form-label">Profile Image</label>
+            <input type="file" class="form-control" id="profile_image" name="profile_image" accept="image/*">
+          </div>
 
           <div class="mb-3">
             <label for="name" class="form-label">Full Name</label>
