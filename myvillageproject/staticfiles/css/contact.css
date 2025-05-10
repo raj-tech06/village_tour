@@ -1,0 +1,157 @@
+body {
+    overflow-x: hidden;
+    width: 100%;
+    height: auto;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f9f9f9;
+}
+
+h2 {
+    padding: 20px;
+    text-align: center;
+    margin-top: 10px;
+    color: #333;
+}
+
+.contact-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px;
+    gap: 20px;
+}
+
+.contact-info1 {
+    width: 45%;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container1 {
+    width: 50%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.column0 {
+    margin-top: 20px;
+    margin-left: 0;
+}
+
+.sendbtn {
+    display: block;
+    background: linear-gradient(to right, #96ff50, #ff6347);
+    margin: 20px auto;
+}
+
+form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+form input, form textarea {
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+form button {
+
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #0056b3;
+}
+
+.contact-info p {
+    margin: 10px 0;
+}
+
+.social-icons a {
+    margin-right: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #333;
+}
+
+.social-icons a:hover {
+    color: #007bff;
+}
+
+
+/* ========== Responsive ========== */
+@media (max-width: 1024px) {
+    .contact-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .container1,
+    .contact-info1 {
+        width: 100%;
+        margin: 0;
+    }
+
+    .sendbtn {
+
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .contact-container {
+        padding: 10px;
+    }
+
+    .container1,
+    .contact-info1 {
+        width: 100%;
+    }
+
+    .column0 {
+        margin-top: 20px;
+    }
+
+    h3 {
+        display: none;
+    }
+
+    form input,
+    form textarea {
+        font-size: 16px;
+    }
+
+    h4 {
+        text-align: center;
+    }
+
+    .social-icons {
+        text-align: center;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    .sendbtn {
+        font-size: 16px;
+    }
+}

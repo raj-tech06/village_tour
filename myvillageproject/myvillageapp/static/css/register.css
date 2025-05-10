@@ -1,0 +1,55 @@
+/* Centered container spacing */
+.container1 {
+    max-width: 400px;
+    margin: auto;
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+h2 {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Spacing for input fields */
+.form-label {
+    font-weight: 500;
+}
+
+input.form-control {
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* Button styling */
+.btn-success {
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+/* Alert container spacing */
+.alert-container {
+    margin-bottom: 20px;
+}
+
+/* Alert styles */
+.alert {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* Link style */
+.text-center a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #28a745;
+}
+
+.text-center a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,76 @@
+/* Container styling */
+.container0 {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.logintxt{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+/* Heading styling */
+.form-label{
+    font-weight: bold;
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form styling */
+form {
+    width: 100%;
+}
+
+/* Input fields styling */
+input.form-control0 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    /* margin-left: 10%; */
+    padding: 12px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+}
+
+/* Button styling */
+button.btn-success0 {
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button.btn-success0:hover {
+    background-color: #218838;
+}
+
+/* Text link styling */
+.text-center0 p {
+    font-size: 14px;
+    color: #555;
+}
+
+.returnregister{
+    margin-left: 26%;
+    font-size: 14px;
+    color: #555;
+}
+
+
+.text-center0 a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.text-center0 a:hover {
+    color: #0056b3;
+}
