@@ -8,6 +8,97 @@
 {% endblock css %}
 
 {% block content %}
+
+<!-- <style>
+  /* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Container for the tours section */
+.container-tour {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.container-tour h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+/* Grid layout */
+.tour-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* Tour card styling */
+.tour-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.tour-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.tour-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.tour-card-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.tour-card-content h3 {
+  font-size: 1.5rem;
+  color: #007b5e;
+  margin-bottom: 10px;
+}
+
+.tour-card-content p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+  .container-tour h2 {
+    font-size: 2rem;
+  }
+
+  .tour-card-content h3 {
+    font-size: 1.3rem;
+  }
+
+  .tour-card-content p {
+    font-size: 0.95rem;
+  }
+}
+
+</style> -->
+
 <h1>Villages of Madhya Pradesh</h1>
  
 <div class="container py-5">
@@ -85,7 +176,7 @@
           <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">Food Experience</span>
         </div>
         <div class="card-body">
-          <h5 class="card-title fw-bold text-success">खोखरा जिला:सीधी)</h5>
+          <h5 class="card-title fw-bold text-success">खोखरा(जिला:सीधी)</h5>
           <p class="text-muted mb-2">2 Days, 1 Night – <span class="fw-semibold text-dark">₹2,899</span></p>
           <p class="card-text text-secondary small">Indulge in authentic village cuisine, prepared with fresh local ingredients, and served in a traditional rural setting.</p>
           <a href="#" class="btn btn-outline-success w-100 rounded-pill">View Details</a>
@@ -144,45 +235,45 @@
 
 <!------------------------------------------dropdown- start------------------------------------------------------------------->
 
-
-    <div class="accordion" id="accordionExample">
+<div class="accordion" id="accordionExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        Accordion Item #1
+        Village History
       </button>
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        <strong>Our village has a rich historical background</strong> dating back several centuries. Founded by local tribes, it has evolved through generations while preserving its cultural essence. Ancient temples, traditional homes, and folk tales passed down from elders keep the village's legacy alive.
       </div>
     </div>
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingTwo">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        Accordion Item #2
+        Local Attractions
       </button>
     </h2>
     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        <strong>Visitors are drawn to our natural and cultural spots.</strong> Key attractions include the serene village lake, ancient temples, and lush green fields. The weekly haat bazaar (market) is a colorful hub of local produce, crafts, and community life.
       </div>
     </div>
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingThree">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        Accordion Item #3
+        Festivals & Culture
       </button>
     </h2>
     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        <strong>The village celebrates many vibrant festivals</strong> such as Makar Sankranti, Holi, Diwali, and local fairs (melas). Folk music, traditional dances like Ghoomar and Bhavai, and community feasts are central to our cultural identity.
       </div>
     </div>
   </div>
 </div>
+
 
 <!--------------------------------------------------dropdown end------------------------------------------------------------>
 
