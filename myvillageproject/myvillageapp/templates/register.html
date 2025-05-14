@@ -1,29 +1,16 @@
 {% extends 'common.html' %}
-
-
 {% load static %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/Register.css' %}">
 {% endblock css %}
 
-
 {% block content %}
-
 
 <div class="container1 mt-5">
     <h2 class="text-center">Register</h2>
 
-    <!-- Display Messages -->
-    {% if messages %}
-        <div class="alert-container">
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
+
 
     <form  action="{% url 'registerdata' %}" method="POST">
         {% csrf_token %}

@@ -48,6 +48,9 @@ urlpatterns = [
     path('dashboard1/<int:pk>', views.dashboard1, name='dashboard1'), 
     path('profile/', views.profile, name='profile'),
     path('profile1/<int:pk>', views.profile1, name='profile1'),
+    # -------------query working----------------    
+    path('query/<int:pk>', views.query, name='query'),
+    path('allquery/<int:pk>', views.allquery, name='allquery'),
 
 
 

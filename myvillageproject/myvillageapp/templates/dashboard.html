@@ -10,22 +10,6 @@
 
 {% block content %}
 
-{% comment %} <style>
-  .profile-box {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-  }
-  .update-form {
-    display: none;
-  }
-</style> {% endcomment %}
-
-{% load static %}
-
-
-
-
 
 {% load static %}
 
@@ -57,13 +41,46 @@
           Update Profile
         </button>
 
+        <a href="{% url 'query' pk=user.id %}" class="btn btn-success mt-3" style="font-size: 1rem; padding: 10px 20px; border-radius: 25px;  background: linear-gradient(to right, #ff7e5f, #feb47b);">
+          Query
+        </a>
+        <a href="{% url 'allquery' pk=user.id %}" class="btn btn-success mt-3" style="font-size: 1rem; padding: 10px 20px; border-radius: 25px;  background: linear-gradient(to right, #ff7e5f, #feb47b);">
+          AllQuery
+        </a>
+
       </div>
+
+
+      {% if query %}
+      <form action="{% url 'query' pk=user.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="query" class="form-label">Query</label>
+          <textarea class="form-control" id="query" rows="3" placeholder="Enter your query"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Query</button>
+      </form>
+      {% elif querydtails %}
+      
+      <table>
+        <tr>
+          <th>S.no</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Query</th>
+        </tr>
+        {% endelif %}
+        {% for i in querydtails  %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{i.name}}</td>
+          <td>{{i.email}}</td>
+          <td>{{i.query}}</td>
+        </tr>
+      </table>
+      {% endfor %}
+
     </div>
-
-
-
-
-
 
     <!-- Update Form Section -->
     <div class="col-md-8">

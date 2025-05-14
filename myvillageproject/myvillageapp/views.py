@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect,HttpResponse
 
-from .models import User
+from .models import User,Query
 
 
 # ------------------- Static Pages -------------------
@@ -261,3 +261,38 @@ def profile1(request,pk):
 
 
 #   ------------------- Profile end -------------------
+
+# -----------Query working-------------------
+def query(request,pk):
+    user=Query.objects.get(id=pk)
+    databreak={
+                    'id':user.id,
+                    'username':user.username,
+                    'email':user.email,
+                    'password':user.password
+                }
+    if request.method == 'POST':
+        name=request.POST.get('name')
+        email=request.POST.get('email')
+        query=request.POST.get('query')
+
+      
+        Query.objects.create(name=name,email=email,query=query)
+        return render(request,'query.html',{'user':databreak,'query':user, 'email':email})
+    else:
+        msg='please fill the form'
+        return render(request,'dashboard.html',{'msg':msg, 'user':databreak, query:user})
+    
+#   -------------------Query end -------------------
+#   -------------------All Query working-------------------
+def allquery(request,pk):
+    user=User.objects.get(id=pk)
+    # x=user.email
+    databreak={
+                    'id':user.id,
+                    'username':user.username,
+                    'email':user.email,
+                    'password':user.password
+                }
+    query=Query.objects.filter(email=user.email)
+    return render(request, 'allquery.html',{'user':databreak,'query':query})
