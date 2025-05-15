@@ -1,116 +1,127 @@
 {% extends 'common.html' %}
 {% load static %}
 
-
-
 {% block css %}
-      <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 {% endblock css %}
 
-
 {% block content %}
-
-
-{% load static %}
-
 <div class="container mt-5">
   <div class="row">
 
-    <!-- Profile Section -->
+    <!-- LEFT: Profile Section -->
     <div class="col-md-4">
-      <div class="profile-box shadow-sm p-4 rounded-3" style="border: 2px solid #4CAF50; background-color: #f9f9f9; height: auto; border-right: none; border-left: none; text-align: center;">
+      <div class="profile-box shadow-sm p-4 rounded-3" style="border: 2px solid #4CAF50; background-color: #f9f9f9; height: auto; text-align: center;">
 
-        {% if user.id %}
-          {% if user.userprofile and user.userprofile.profile_image %}
-            <img src="{{ user.userprofile.profile_image.url }}" alt="Profile Image" style="height: 120px; width: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #4CAF50;">
+        {% if user %}
+         
+            <img src="{{ user.profile_image.url }}" alt="Profile Image" style="height: 120px; width: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #4CAF50;">
           {% else %}
-            <img src="/static/img/profile_defualt_img.jpg" alt="Default Profile" style="height: 120px; width: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #ccc;">
-          {% endif %}
+            <img src="{% static 'img/profile_defualt_img.jpg' %}" alt="Default Profile" style="height: 120px; width: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #ccc;">
+       
         {% endif %}
+
+{% comment %} 
+        {% if user %}
+        <img src="{% user.profile_image.url %}" alt="Default Profile" style="height: 120px; width: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #ccc;">
+        {% else %}
+        <img src="{% static 'img/profile_defualt_img.jpg' %}" alt="Default Profile" style="height: 120px; width: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #ccc;">
+        {% endif %} {% endcomment %}
 
         <span style="font-size: 1.5rem; font-weight: bold; color:rgb(210, 20, 52);">{{ user.username }}</span>
         <hr>
+        <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; color: #0f100f;">ID:</span> {{ user.id }}</h4>
+        <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; color: #0f100f;">Name:</span> {{ user.username }}</h4>
+        <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; color: #0f100f;">Phone:</span> {{ user.phone }}</h4>
+        <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; color: #0f100f;">Email:</span> {{ user.email }}</h4>
 
-        <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; font-weight: bold; color: #0f100f;">ID:</span> {{ user.id }}</h4>
-        <br>
-        <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; font-weight: bold; color: #0f100f;">Name:</span> {{ user.username }}</h4>
-        <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; font-weight: bold; color: #0f100f;">Phone:</span> {{ user.phone }}</h4>
-        <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; font-weight: bold; color: #0f100f;">Email:</span> {{ user.email }}</h4>
-
-        <button class="btn btn-success mt-3" onclick="toggleForm()" style="font-size: 1rem; padding: 10px 20px; border-radius: 25px;  background: linear-gradient(to right, #ff7e5f, #feb47b);">
+        <button class="btn btn-success mt-3" onclick="toggleForm()" style="font-size: 1rem; padding: 10px 20px; border-radius: 25px; background: linear-gradient(to right, #ff7e5f, #feb47b);">
           Update Profile
         </button>
 
-        <a href="{% url 'query' pk=user.id %}" class="btn btn-success mt-3" style="font-size: 1rem; padding: 10px 20px; border-radius: 25px;  background: linear-gradient(to right, #ff7e5f, #feb47b);">
-          Query
-        </a>
-        <a href="{% url 'allquery' pk=user.id %}" class="btn btn-success mt-3" style="font-size: 1rem; padding: 10px 20px; border-radius: 25px;  background: linear-gradient(to right, #ff7e5f, #feb47b);">
-          AllQuery
-        </a>
-
+        {% if user.id %}
+         
+          <a href="{% url 'allquery' pk=user.id %}" class="btn btn-success mt-3" style="font-size: 1rem; padding: 10px 20px; border-radius: 25px; background: linear-gradient(to right, #ff7e5f, #feb47b);">
+            AllQuery
+          </a>
+        {% endif %}
       </div>
+    </div>
 
+    <!-- RIGHT: Query Form, Table, Update Form -->
+    <div class="col-md-8">
 
-      {% if query %}
-      <form action="{% url 'query' pk=user.id %}" method="POST" enctype="multipart/form-data">
+      {% if user.id %}
+      <!-- Query Form -->
+      <form action="{% url 'query' pk=user.id %}" method="POST" enctype="multipart/form-data" class="mb-4 mt-3">
         {% csrf_token %}
         <div class="mb-3">
           <label for="query" class="form-label">Query</label>
-          <textarea class="form-control" id="query" rows="3" placeholder="Enter your query"></textarea>
+          <textarea class="form-control" id="query" rows="3" placeholder="Enter your query" name="query"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit Query</button>
       </form>
-      {% elif querydtails %}
-      
-      <table>
-        <tr>
-          <th>S.no</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Query</th>
-        </tr>
-        {% endelif %}
-        {% for i in querydtails  %}
-        <tr>
-          <td>{{forloop.counter}}</td>
-          <td>{{i.name}}</td>
-          <td>{{i.email}}</td>
-          <td>{{i.query}}</td>
-        </tr>
+      {% endif %}
+
+      <!-- Query Table -->
+      {% if query %}
+       <a  class="btn btn-success mt-3" onclick="Querytoggle()"  style="font-size: 1rem; padding: 10px 20px; border-radius: 25px; background: linear-gradient(to right, #ff7e5f, #feb47b); margin-top: 20%;">
+            ShowQuery
+        </a>
+      <table class="table table-striped mt-4" id="Query">
+        <thead>
+          <tr>
+            <th>S.no</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Query</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in query %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.name }}</td>
+            <td>{{ i.email }}</td>
+            <td>{{ i.query }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
       </table>
-      {% endfor %}
+      {% endif %}
 
-    </div>
+      <!-- Update Form -->
+      <div id="updateForm" class="update-form mt-4" style="display: none;">
 
-    <!-- Update Form Section -->
-    <div class="col-md-8">
-      <div id="updateForm" class="update-form">
         <h4 class="mb-3">Update Your Profile</h4>
-        <form action="{% url 'registerdata' %}" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
+        <form action="{% url 'update' user.id %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
 
           <div class="mb-3">
             <label for="profile_image" class="form-label">Profile Image</label>
             <input type="file" class="form-control" id="profile_image" name="profile_image" accept="image/*">
           </div>
-
           <div class="mb-3">
             <label for="name" class="form-label">Full Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter full name" name="name" value="{{ user.username }}">
+            <input type="text" class="form-control" id="name" name="name" value="{{ user.username }}">
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="{{ user.email }}">
+            <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
           </div>
           <div class="mb-3">
             <label for="phone" class="form-label">Phone Number</label>
-            <input type="tel" class="form-control" id="phone" placeholder="Enter phone number" name="phone" value="{{ user.phone }}">
+            <input type="tel" class="form-control" id="phone" name="phone" value="{{ user.phone }}">
           </div>
-          <button type="submit" class="btn btn-success">Save Changes</button>
+          <div class="mb-3">
+            <label for="password" class="form-label">change password</label>
+            <input type="password" class="form-control" id="password" name="password" value="{{ user.password }}">
+          </div>
+          <button type="submit" class="btn btn-success">update Changes</button>
         </form>
       </div>
-    </div>
 
+    </div>
   </div>
 </div>
 
@@ -119,6 +130,9 @@
     const form = document.getElementById('updateForm');
     form.style.display = form.style.display === 'none' || form.style.display === '' ? 'block' : 'none';
   }
+  function Querytoggle() {
+    const Query = document.getElementById('Query');
+    Query.style.display = Query.style.display === 'none' || Query.style.display === '' ? 'block' : 'none';
+  }
 </script>
-
 {% endblock %}

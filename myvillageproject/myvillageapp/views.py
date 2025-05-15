@@ -124,6 +124,7 @@ def registerdata(req):
         # fname=req.POST.get('full_name')
         Uname=req.POST.get('username')
         Eml=req.POST.get('email')
+        phone=req.POST.get('phone')
         Pass1=req.POST.get('password')
         cpass1=req.POST.get('confirm_password')
 
@@ -196,7 +197,7 @@ def registerdata(req):
                 return render(req,'register.html',{'msg':msg})
             
             else:
-                User.objects.create(username=Uname,email=Eml,password=Pass1)
+                User.objects.create(username=Uname,email=Eml,password=Pass1,phone=phone)
                 msg='successfully registered'
                 return render(req,'login.html',{'msg':msg})
 
@@ -217,25 +218,29 @@ def logindata(request):
     if request.method == 'POST':
         Eml=request.POST.get('email')
         Pass1=request.POST.get('password')
-
-        user=User.objects.get(email=Eml)
+        user=User.objects.filter(email=Eml)
+        print(user)
         if user:
-            if user.password==Pass1:
+            user1=User.objects.get(email=Eml)
+          
+            if user1.password==Pass1:
                 databreak={
-                    'id': user.id,
-                    'username':user.username,
-                    'email':user.email,
-                    'phone': user.phone,
-                    'password':user.password
+                    'id': user1.id,
+                    'username':user1.username,
+                    'email':user1.email,
+                    'phone': user1.phone,
+                    'password':user1.password,
+                    'profile_image':user1.profile_pic
                 }
                 msg='successfully logged in'
                 return render(request,'dashboard.html',{'msg':msg, 'user':databreak})
             else:
                 msg='invalid password'
                 return render(request,'login.html',{'msg':msg})
+       
         else:
-            msg='invalid username or password'
-            return render(request,'login.html',{'msg':msg})
+          msg='Email not registered'
+          return render(request,'register.html',{'msg':msg})  
     else:
         msg='please fill the form'
         return render(request,'login.html',{'msg':msg})
@@ -254,7 +259,9 @@ def profile1(request,pk):
                     'id':user.id,
                     'username':user.username,
                     'email':user.email,
-                    'password':user.password
+                    'password':user.password,
+                    'phone':user.phone,
+                    'profile_image':user.profile_pic
                 }
 
     return render(request, 'profile.html',{'user':databreak})
@@ -264,24 +271,27 @@ def profile1(request,pk):
 
 # -----------Query working-------------------
 def query(request,pk):
-    user=Query.objects.get(id=pk)
+    user=User.objects.get(id=pk)
     databreak={
                     'id':user.id,
                     'username':user.username,
                     'email':user.email,
-                    'password':user.password
+                    'password':user.password,
+                    'phone':user.phone,
+                    'profile_image':user.profile_pic
                 }
     if request.method == 'POST':
-        name=request.POST.get('name')
-        email=request.POST.get('email')
+        name=user.username
+        email=user.email
         query=request.POST.get('query')
 
       
         Query.objects.create(name=name,email=email,query=query)
-        return render(request,'query.html',{'user':databreak,'query':user, 'email':email})
+
+        return render(request,'dashboard.html',{'user':databreak, 'email':email})
     else:
         msg='please fill the form'
-        return render(request,'dashboard.html',{'msg':msg, 'user':databreak, query:user})
+        return render(request,'dashboard.html',{'msg':msg, 'user':databreak})
     
 #   -------------------Query end -------------------
 #   -------------------All Query working-------------------
@@ -292,7 +302,40 @@ def allquery(request,pk):
                     'id':user.id,
                     'username':user.username,
                     'email':user.email,
-                    'password':user.password
+                    'password':user.password,
+                    'phone':user.phone,
+                    'profile_image':user.profile_pic
+
                 }
     query=Query.objects.filter(email=user.email)
-    return render(request, 'allquery.html',{'user':databreak,'query':query})
+    return render(request, 'dashboard.html',{'user':databreak,'query':query})
+
+#   -------------------update data working-------------------
+def update(request,pk):
+    user=User.objects.get(id=pk)
+    print(request.FILES.get('profile_image'))
+    if request.method == 'POST':
+        user.profile_pic=request.FILES.get('profile_image')
+        user.username=request.POST.get('name')
+        user.email=request.POST.get('email')
+        user.phone=request.POST.get('phone')
+        user.password=request.POST.get('password')
+        user.save()
+        msg='successfully updated'
+        databreak={
+                    'id':user.id,
+                    'username':user.username,
+                    'email':user.email,
+                    'password':user.password,
+                    'phone':user.phone,
+                    'profile_image':user.profile_pic
+
+
+                }
+       
+        print(databreak.values())
+        return render(request,'dashboard.html',{'msg':msg, 'user':databreak})
+     
+
+      
+

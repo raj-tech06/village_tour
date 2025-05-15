@@ -51,7 +51,7 @@ urlpatterns = [
     # -------------query working----------------    
     path('query/<int:pk>', views.query, name='query'),
     path('allquery/<int:pk>', views.allquery, name='allquery'),
-
+    path('update/<int:pk>', views.update, name='update'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
