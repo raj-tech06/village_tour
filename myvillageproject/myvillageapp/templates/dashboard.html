@@ -14,12 +14,12 @@
       <div class="profile-box shadow-sm p-4 rounded-3" style="border: 2px solid #4CAF50; background-color: #f9f9f9; height: auto; text-align: center;">
 
         {% if user %}
-         
+         {% if user.profile_image %}
             <img src="{{ user.profile_image.url }}" alt="Profile Image" style="height: 120px; width: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #4CAF50;">
           {% else %}
             <img src="{% static 'img/profile_defualt_img.jpg' %}" alt="Default Profile" style="height: 120px; width: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #ccc;">
-       
-        {% endif %}
+       {% endif %}
+       {% endif %}
 
 {% comment %} 
         {% if user %}
@@ -30,7 +30,7 @@
 
         <span style="font-size: 1.5rem; font-weight: bold; color:rgb(210, 20, 52);">{{ user.username }}</span>
         <hr>
-        <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; color: #0f100f;">ID:</span> {{ user.id }}</h4>
+        {% comment %} <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; color: #0f100f;">ID:</span> {{ user.id }}</h4> {% endcomment %}
         <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; color: #0f100f;">Name:</span> {{ user.username }}</h4>
         <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; color: #0f100f;">Phone:</span> {{ user.phone }}</h4>
         <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; color: #0f100f;">Email:</span> {{ user.email }}</h4>

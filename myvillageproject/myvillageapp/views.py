@@ -53,7 +53,8 @@ def dashboard1(request,pk):
             'username':user.username,
             'email':user.email,
             'phone': user.phone,
-            'password':user.password
+            'password':user.password,
+            'profile_image':user.profile_pic
         }
         msg='successfully logged in'
         return render(request,'dashboard.html',{'msg':msg, 'user':databreak})
@@ -329,8 +330,6 @@ def update(request,pk):
                     'password':user.password,
                     'phone':user.phone,
                     'profile_image':user.profile_pic
-
-
                 }
        
         print(databreak.values())
