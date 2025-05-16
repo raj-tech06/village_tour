@@ -1,7 +1,7 @@
 """
 URL configuration for digital_village_tour project.
 
-The `urlpatterns` list routes URLs to views. For more information please see:
+The urlpatterns list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
 Examples:
 Function views
@@ -48,13 +48,14 @@ urlpatterns = [
     path('dashboard1/<int:pk>', views.dashboard1, name='dashboard1'), 
     path('profile/', views.profile, name='profile'),
     path('profile1/<int:pk>', views.profile1, name='profile1'),
+    path('update/<int:pk>', views.update, name='update'),
     # -------------query working----------------    
     path('query/<int:pk>', views.query, name='query'),
     path('allquery/<int:pk>', views.allquery, name='allquery'),
-    path('update/<int:pk>', views.update, name='update'),
+    path('edit_query/<int:pk>', views.edit_query, name='edit_query'),
+
+    
+
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
-

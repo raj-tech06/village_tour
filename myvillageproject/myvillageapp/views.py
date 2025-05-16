@@ -1,340 +1,293 @@
-from django.shortcuts import render, redirect,HttpResponse
-
-from .models import User,Query
-
+from django.shortcuts import render, redirect, HttpResponse
+from .models import User, Query
 
 # ------------------- Static Pages -------------------
 
 def home(request):
     return render(request, 'home.html')
 
-def home1(request,pk):
-    user=User.objects.get(id=pk)
-    databreak={
-                'id':user.id,
-                'username':user.username,
-                'email':user.email,
-                'phone': user.phone,
-                'password':user.password
-              }
+def home1(request, pk):
+    user = User.objects.get(id=pk)
+    databreak = {
+        'id': user.id,
+        'username': user.username,
+        'email': user.email,
+        'phone': user.phone,
+        'password': user.password
+    }
+    msg = 'successfully logged in'
+    return render(request, 'home.html', {'msg': msg, 'user': databreak})
 
-    msg='successfully logged in'
-    return render(request,'home.html',{'msg':msg, 'user':databreak})
-
-# -------------------------------------home end--------------------------
+# ------------------- About -------------------
 
 def about(request):
     return render(request, 'about.html')
 
-def about1(request,pk):
-    user=User.objects.get(id=pk)
-    databreak={
-                'id':user.id,
-                'username':user.username,
-                'email':user.email,
-                'phone': user.phone,
-                'password':user.password
-              }
-    msg='successfully logged in'
-    return render(request,'contact.html',{'msg':msg, 'user':databreak})
+def about1(request, pk):
+    user = User.objects.get(id=pk)
+    databreak = {
+        'id': user.id,
+        'username': user.username,
+        'email': user.email,
+        'phone': user.phone,
+        'password': user.password
+    }
+    msg = 'successfully logged in'
+    return render(request, 'contact.html', {'msg': msg, 'user': databreak})
 
-
-# -------------------------------------about end--------------------------
-
+# ------------------- Dashboard -------------------
 
 def dashboard(request):
     msg = 'login 1st!'
-    return render(request, 'dashboard.html',{'msg': msg})
+    return render(request, 'dashboard.html', {'msg': msg})
 
-def dashboard1(request,pk):
-        user=User.objects.get(id=pk)
-        databreak={
-            'id':user.id,
-            'username':user.username,
-            'email':user.email,
-            'phone': user.phone,
-            'password':user.password,
-            'profile_image':user.profile_pic
-        }
-        msg='successfully logged in'
-        return render(request,'dashboard.html',{'msg':msg, 'user':databreak})
-            
-            
-# -------------------------------------dashboard end--------------------------
+def dashboard1(request, pk):
+    user = User.objects.get(id=pk)
+    databreak = {
+        'id': user.id,
+        'username': user.username,
+        'email': user.email,
+        'phone': user.phone,
+        'password': user.password,
+        'profile_image': user.profile_pic
+    }
+    msg = 'successfully logged in'
+    return render(request, 'dashboard.html', {'msg': msg, 'user': databreak})
 
+# ------------------- Village Life -------------------
 
 def village_life(request):
     return render(request, 'village_life.html')
 
-def village_life1(request,pk):
-        user=User.objects.get(id=pk)
-        databreak={
-            'id':user.id,
-            'username':user.username,
-            'email':user.email,
-            'phone': user.phone,
-            'password':user.password
-        }
-        msg='successfully logged in'
-        return render(request,'village_life.html',{'msg':msg, 'user':databreak})
-            
+def village_life1(request, pk):
+    user = User.objects.get(id=pk)
+    databreak = {
+        'id': user.id,
+        'username': user.username,
+        'email': user.email,
+        'phone': user.phone,
+        'password': user.password
+    }
+    msg = 'successfully logged in'
+    return render(request, 'village_life.html', {'msg': msg, 'user': databreak})
 
-# -------------------------------------village_life end--------------------------
+# ------------------- Purchase -------------------
 
 def Purchase(request):
     return render(request, 'Purchase.html')
 
-def Purchase1(request,pk):
-        user=User.objects.get(id=pk)
-        databreak={
+def Purchase1(request, pk):
+    user = User.objects.get(id=pk)
+    databreak = {
+        'id': user.id,
+        'username': user.username,
+        'email': user.email,
+        'phone': user.phone,
+        'password': user.password
+    }
+    msg = 'successfully logged in'
+    return render(request, 'Purchase.html', {'msg': msg, 'user': databreak})
 
-            'id':user.id,
-            'username':user.username,
-            'email':user.email,
-            'phone': user.phone,
-            'password':user.password
-        }
-        msg='successfully logged in'
-        return render(request,'Purchase.html',{'msg':msg, 'user':databreak})
-            
-# -----------------------------------fastivals end--------------------------
+# ------------------- Contact -------------------
+
 def contact(request):
     return render(request, 'contact.html')
 
-def contact1(request,pk):
-        user=User.objects.get(id=pk)
-        databreak={
-            'id':user.id,
-            'username':user.username,
-            'email':user.email,
-            'phone': user.phone,
-            'password':user.password
-        }
-        msg='successfully logged in'
-        return render(request,'contact.html',{'msg':msg, 'user':databreak})
-            
-# -----------------------------------contact end--------------------------
+def contact1(request, pk):
+    user = User.objects.get(id=pk)
+    databreak = {
+        'id': user.id,
+        'username': user.username,
+        'email': user.email,
+        'phone': user.phone,
+        'password': user.password
+    }
+    msg = 'successfully logged in'
+    return render(request, 'contact.html', {'msg': msg, 'user': databreak})
 
+# ------------------- Register -------------------
 
 def register(request):
     return render(request, 'register.html')
 
 def registerdata(req):
     if req.method == 'POST':
+        Uname = req.POST.get('username')
+        Eml = req.POST.get('email')
+        phone = req.POST.get('phone')
+        Pass1 = req.POST.get('password')
+        cpass1 = req.POST.get('confirm_password')
 
-        # fname=req.POST.get('full_name')
-        Uname=req.POST.get('username')
-        Eml=req.POST.get('email')
-        phone=req.POST.get('phone')
-        Pass1=req.POST.get('password')
-        cpass1=req.POST.get('confirm_password')
+        if User.objects.filter(email=Eml).exists():
+            msg = 'email already exists'
+            return render(req, 'register.html', {'msg': msg})
 
-        # check for empty fields
-        user=User.objects.filter(email=Eml)
-        if user:
-            msg='email already exists'
-            return render(req,'register.html',{'msg':msg})
-        
-        # check for username
-        user_username = User.objects.filter(username=Uname)
-        if user_username:
+        if User.objects.filter(username=Uname).exists():
             msg = 'Username already exists'
             return render(req, 'register.html', {'msg': msg})
-                
 
-        else:
+        if len(Uname) < 6:
+            msg = 'please enter your full name'
+            return render(req, 'register.html', {'msg': msg})
 
-            if len(Uname)<6:
-                msg='please enter your full name' 
-                return render(req,'register.html',{'msg':msg})
-            
-            if "@" not in Eml or "." not in Eml:
-                msg='please enter a valid email'
-                return render(req,'register.html',{'msg':msg})
-            if "@." in Eml or ".@" in Eml:
-                msg='please enter a valid email'
-                return render(req,'register.html',{'msg':msg})
-            
+        if '@' not in Eml or '.' not in Eml or '@.' in Eml or '.@' in Eml:
+            msg = 'please enter a valid email'
+            return render(req, 'register.html', {'msg': msg})
 
-            checker=False
-            # check for digit
-            for i in Pass1:
-                if i.isdigit():
-                    checker=True
-                    break
-            
-            if(checker==False):
-                msg='please make sure your password contains at least one digit'        
-                return render(req,'register.html',{'msg':msg})    
-            checker=False
+        if not any(i.isdigit() for i in Pass1):
+            msg = 'please make sure your password contains at least one digit'
+            return render(req, 'register.html', {'msg': msg})
 
-            # check for upper case
-            for i in Pass1:
-                if i.isupper():
-                    checker=True
-                    break   
-            if(checker==False):
-                msg='please make sure your password contains at least one upper case letter'        
-                return render(req,'register.html',{'msg':msg})
+        if not any(i.isupper() for i in Pass1):
+            msg = 'please make sure your password contains at least one upper case letter'
+            return render(req, 'register.html', {'msg': msg})
 
-            checker=False 
-            spchar="!@#$%^&*()-_+={}[]:;'\"<>,.?/"
-            for i in Pass1:
-                if i in spchar:
-                    checker=True
-                    break
-                    
+        if not any(i in "!@#$%^&*()-_+={}[]:;'\"<>,.?/" for i in Pass1):
+            msg = 'please make sure your password contains at least one special character'
+            return render(req, 'register.html', {'msg': msg})
 
-            if(checker==False):
-                msg='please make sure your password contains at least one special character'        
-                return render(req,'register.html',{'msg':msg})    
-                
-            if len(Pass1)<8:
-                msg='please must be cahrater length 8'
-                return render(req,'register.html',{'msg':msg})
-            
-            if Pass1!=cpass1:
-                msg='password and confirm password are not same'
-                return render(req,'register.html',{'msg':msg})
-            
-            else:
-                User.objects.create(username=Uname,email=Eml,password=Pass1,phone=phone)
-                msg='successfully registered'
-                return render(req,'login.html',{'msg':msg})
+        if len(Pass1) < 8:
+            msg = 'password must be at least 8 characters long'
+            return render(req, 'register.html', {'msg': msg})
 
+        if Pass1 != cpass1:
+            msg = 'password and confirm password are not same'
+            return render(req, 'register.html', {'msg': msg})
+
+        User.objects.create(username=Uname, email=Eml, password=Pass1, phone=phone)
+        msg = 'successfully registered'
+        return render(req, 'login.html', {'msg': msg})
 
     else:
-        msg='please fill the form'
-        return render(req,'register.html',{'msg':msg})
+        msg = 'please fill the form'
+        return render(req, 'register.html', {'msg': msg})
 
-# -----------------------------------register end--------------------------
-
+# ------------------- Login -------------------
 
 def login(request):
     return render(request, 'login.html')
 
-
-        
 def logindata(request):
     if request.method == 'POST':
-        Eml=request.POST.get('email')
-        Pass1=request.POST.get('password')
-        user=User.objects.filter(email=Eml)
-        print(user)
-        if user:
-            user1=User.objects.get(email=Eml)
-          
-            if user1.password==Pass1:
-                databreak={
+        Eml = request.POST.get('email')
+        Pass1 = request.POST.get('password')
+        user = User.objects.filter(email=Eml)
+
+        if user.exists():
+            user1 = user.first()
+            if user1.password == Pass1:
+                databreak = {
                     'id': user1.id,
-                    'username':user1.username,
-                    'email':user1.email,
+                    'username': user1.username,
+                    'email': user1.email,
                     'phone': user1.phone,
-                    'password':user1.password,
-                    'profile_image':user1.profile_pic
+                    'password': user1.password,
+                    'profile_image': user1.profile_pic
                 }
-                msg='successfully logged in'
-                return render(request,'dashboard.html',{'msg':msg, 'user':databreak})
+                msg = 'successfully logged in'
+                return render(request, 'dashboard.html', {'msg': msg, 'user': databreak})
             else:
-                msg='invalid password'
-                return render(request,'login.html',{'msg':msg})
-       
+                msg = 'invalid password'
+                return render(request, 'login.html', {'msg': msg})
         else:
-          msg='Email not registered'
-          return render(request,'register.html',{'msg':msg})  
+            msg = 'Email not registered'
+            return render(request, 'register.html', {'msg': msg})
+
     else:
-        msg='please fill the form'
-        return render(request,'login.html',{'msg':msg})
+        msg = 'please fill the form'
+        return render(request, 'login.html', {'msg': msg})
 
-
-# -----------------------------------login end--------------------------
-
+# ------------------- Profile -------------------
 
 def profile(request):
     return render(request, 'profile.html')
 
-        
-def profile1(request,pk):
-    user=User.objects.get(id=pk)
-    databreak={
-                    'id':user.id,
-                    'username':user.username,
-                    'email':user.email,
-                    'password':user.password,
-                    'phone':user.phone,
-                    'profile_image':user.profile_pic
-                }
+def profile1(request, pk):
+    user = User.objects.get(id=pk)
+    databreak = {
+        'id': user.id,
+        'username': user.username,
+        'email': user.email,
+        'password': user.password,
+        'phone': user.phone,
+        'profile_image': user.profile_pic
+    }
+    return render(request, 'profile.html', {'user': databreak})
 
-    return render(request, 'profile.html',{'user':databreak})
+# ------------------- Query -------------------
 
+def query(request, pk):
+    user = User.objects.get(id=pk)
+    databreak = {
+        'id': user.id,
+        'username': user.username,
+        'email': user.email,
+        'password': user.password,
+        'phone': user.phone,
+        'profile_image': user.profile_pic
+    }
 
-#   ------------------- Profile end -------------------
-
-# -----------Query working-------------------
-def query(request,pk):
-    user=User.objects.get(id=pk)
-    databreak={
-                    'id':user.id,
-                    'username':user.username,
-                    'email':user.email,
-                    'password':user.password,
-                    'phone':user.phone,
-                    'profile_image':user.profile_pic
-                }
     if request.method == 'POST':
-        name=user.username
-        email=user.email
-        query=request.POST.get('query')
+        name = user.username
+        email = user.email
+        query_text = request.POST.get('query')
 
-      
-        Query.objects.create(name=name,email=email,query=query)
+        Query.objects.create(name=name, email=email, query=query_text)
+        return render(request, 'dashboard.html', {'user': databreak, 'email': email})
 
-        return render(request,'dashboard.html',{'user':databreak, 'email':email})
     else:
-        msg='please fill the form'
-        return render(request,'dashboard.html',{'msg':msg, 'user':databreak})
-    
-#   -------------------Query end -------------------
-#   -------------------All Query working-------------------
-def allquery(request,pk):
-    user=User.objects.get(id=pk)
-    # x=user.email
-    databreak={
-                    'id':user.id,
-                    'username':user.username,
-                    'email':user.email,
-                    'password':user.password,
-                    'phone':user.phone,
-                    'profile_image':user.profile_pic
+        msg = 'please fill the form'
+        return render(request, 'dashboard.html', {'msg': msg, 'user': databreak})
 
-                }
-    query=Query.objects.filter(email=user.email)
-    return render(request, 'dashboard.html',{'user':databreak,'query':query})
+# ------------------- All Queries -------------------
 
-#   -------------------update data working-------------------
-def update(request,pk):
-    user=User.objects.get(id=pk)
-    print(request.FILES.get('profile_image'))
+def allquery(request, pk):
+    user = User.objects.get(id=pk)
+    databreak = {
+        'id': user.id,
+        'username': user.username,
+        'email': user.email,
+        'password': user.password,
+        'phone': user.phone,
+        'profile_image': user.profile_pic
+    }
+    query_data = Query.objects.filter(email=user.email)
+    return render(request, 'dashboard.html', {'user': databreak, 'query': query_data})
+
+# ------------------- Edit Query -------------------
+
+def edit_query(request, pk):
+    editdata = Query.objects.get(id=pk)
+    email = editdata.email
+    userdata = User.objects.get(email=email)
+    databreak = {
+        'id': userdata.id,
+        'username': userdata.username,
+        'email': userdata.email,
+        'password': userdata.password,
+        'phone': userdata.phone,
+        'profile_image': userdata.profile_pic
+    }
+    return render(request, 'dashboard.html', {'user': databreak, 'editdata': editdata})
+
+# ------------------- Update Profile -------------------
+
+def update(request, pk):
+    user = User.objects.get(id=pk)
     if request.method == 'POST':
-        user.profile_pic=request.FILES.get('profile_image')
-        user.username=request.POST.get('name')
-        user.email=request.POST.get('email')
-        user.phone=request.POST.get('phone')
-        user.password=request.POST.get('password')
+        user.profile_pic = request.FILES.get('profile_image')
+        user.username = request.POST.get('name')
+        user.email = request.POST.get('email')
+        user.phone = request.POST.get('phone')
+        user.password = request.POST.get('password')
         user.save()
-        msg='successfully updated'
-        databreak={
-                    'id':user.id,
-                    'username':user.username,
-                    'email':user.email,
-                    'password':user.password,
-                    'phone':user.phone,
-                    'profile_image':user.profile_pic
-                }
-       
-        print(databreak.values())
-        return render(request,'dashboard.html',{'msg':msg, 'user':databreak})
-     
-
-      
-
+        msg = 'successfully updated'
+        databreak = {
+            'id': user.id,
+            'username': user.username,
+            'email': user.email,
+            'password': user.password,
+            'phone': user.phone,
+            'profile_image': user.profile_pic
+        }
+        return render(request, 'dashboard.html', {'msg': msg, 'user': databreak})
