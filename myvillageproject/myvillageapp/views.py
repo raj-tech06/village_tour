@@ -257,6 +257,7 @@ def allquery(request, pk):
 # ------------------- Edit Query -------------------
 
 def edit_query(request, pk):
+if request.method=='POST':
     editdata = Query.objects.get(id=pk)
     email = editdata.email
     userdata = User.objects.get(email=email)
