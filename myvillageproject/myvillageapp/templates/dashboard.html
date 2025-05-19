@@ -24,27 +24,29 @@
           <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; color: #0f100f;">Name:</span> {{ user.username }}</h4>
           <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; color: #0f100f;">Phone:</span> {{ user.phone }}</h4>
           <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; color: #0f100f;">Email:</span> {{ user.email }}</h4>
+          <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; color: #0f100f;">Email:</span> {{ user.id }}</h4>
 
           <button class="btn btn-success mt-3" onclick="toggleForm()" style="font-size: 1rem; padding: 10px 20px; border-radius: 25px; background: linear-gradient(to right, #ff7e5f, #feb47b);">
             Update Profile
           </button>
-
+         {% if user %}
           <a href="{% url 'allquery' pk=user.id %}" class="btn btn-success mt-3" style="font-size: 1rem; padding: 10px 20px; border-radius: 25px; background: linear-gradient(to right, #ff7e5f, #feb47b);">
             All Query
           </a>
+        {% endif %}
         {% endif %}
       </div>
     </div>
 
     <!-- RIGHT: Query Form / Edit Form / Query Table / Update Form -->
     <div class="col-md-8">
-{% if editdata %}
+{% if editquery %}
   <!-- Edit Form -->
-  <form action="{% url 'edit_query' pk=editdata.id %}" method="POST" enctype="multipart/form-data" class="mb-4 mt-3">
+  <form action="{% url 'edit_query' pk=user.id it=editquery.id %}" method="POST" enctype="multipart/form-data" class="mb-4 mt-3">
     {% csrf_token %}
     <div class="mb-3">
       <label for="query" class="form-label">Query</label>
-      <textarea class="form-control" id="query" rows="3" placeholder="Enter your query" name="query">{{ editdata.query }}</textarea>
+      <textarea class="form-control" id="query" rows="3" placeholder="Enter your query" name="query">{{ editquery.query }}</textarea>
     </div>
     <button type="submit" class="btn btn-primary">Update Query</button>
   </form>
@@ -85,8 +87,10 @@
             <td>{{ i.name }}</td>
             <td>{{ i.email }}</td>
             <td>{{ i.query }}</td>
-            <td><a href="{% url 'edit_query' pk=i.id %}">Edit</a></td>
-            {% comment %} <td><a href="{% url 'delete' pk=i.id %}">Delete</a></td> {% endcomment %}
+            <td><a href="{% url 'edit_query' pk=user.id it=i.id %}">Edit</a></td>
+            <td><a href="{% url 'delete_query' pk=user.id it=i.id %}"onclick="return confirm('Are you sure you want to delete this query?')">Delete</a></td>
+            {% comment %} <a href="{% url 'delete_query' pk=user.id it=editquery.id %}" onclick="return confirm('Are you sure you want to delete this query?')">Delete</a> {% endcomment %}
+
           </tr>
           {% endfor %}
         </tbody>
@@ -137,4 +141,4 @@
     queryTable.style.display = queryTable.style.display === 'none' || queryTable.style.display === '' ? 'table' : 'none';
   }
 </script>
-{% endblock %}
+{% endblock %}

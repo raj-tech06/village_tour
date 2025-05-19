@@ -1,4 +1,4 @@
-{% comment %} """
+"""
 URL configuration for digital_village_tour project.
 
 The urlpatterns list routes URLs to views. For more information please see:
@@ -52,10 +52,12 @@ urlpatterns = [
     # -------------query working----------------    
     path('query/<int:pk>', views.query, name='query'),
     path('allquery/<int:pk>', views.allquery, name='allquery'),
-    path('edit_query/<int:pk>', views.edit_query, name='edit_query'),
+    path('edit_query/<int:pk>/<int:it>/', views.edit_query, name='edit_query'),
+    path('delete_query/<int:pk>/<int:it>/', views.delete_query, name='delete_query'),
+
 
     
 
 
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) {% endcomment %}
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

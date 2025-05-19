@@ -256,11 +256,14 @@ def allquery(request, pk):
 
 # ------------------- Edit Query -------------------
 
-def edit_query(request, pk):
-if request.method=='POST':
-    editdata = Query.objects.get(id=pk)
-    email = editdata.email
-    userdata = User.objects.get(email=email)
+
+
+from django.shortcuts import render
+from django.http import HttpResponse
+from .models import Query, User
+
+def edit_query(request, pk, it):
+    userdata = User.objects.get(id=pk)
     databreak = {
         'id': userdata.id,
         'username': userdata.username,
@@ -269,7 +272,40 @@ if request.method=='POST':
         'phone': userdata.phone,
         'profile_image': userdata.profile_pic
     }
-    return render(request, 'dashboard.html', {'user': databreak, 'editdata': editdata})
+
+    if request.method == 'POST':
+        editdata = Query.objects.get(id=it)
+        editdata.query = request.POST.get('query')
+        editdata.save()
+        return render(request, 'dashboard.html', {'user': databreak, 'editdata': editdata})
+    else:
+        editquery = Query.objects.get(id=it)
+        return render(request, 'dashboard.html', {'user': databreak, 'editquery': editquery})
+
+
+
+#-------------for delete query---------------
+def delete_query(request, pk, it):
+    userdata = User.objects.get(id=pk)
+    databreak = {
+        'id': userdata.id,
+        'username': userdata.username,
+        'email': userdata.email,
+        'password': userdata.password,
+        'phone': userdata.phone,
+        'profile_image': userdata.profile_pic
+    }
+
+    query = Query.objects.get(id=it)
+    query.delete()
+
+    return render(request, 'dashboard.html', {'user': databreak})
+
+
+
+
+
+
 
 # ------------------- Update Profile -------------------
 
@@ -291,4 +327,4 @@ def update(request, pk):
             'phone': user.phone,
             'profile_image': user.profile_pic
         }
-        return render(request, 'dashboard.html', {'msg': msg, 'user': databreak})
+        return render(request, 'dashboard.html', {'msg': msg, 'user':databreak})
