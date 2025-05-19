@@ -1,4 +1,4 @@
-"""
+{% comment %} """
 URL configuration for digital_village_tour project.
 
 The urlpatterns list routes URLs to views. For more information please see:
@@ -58,4 +58,4 @@ urlpatterns = [
 
 
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) {% endcomment %}
