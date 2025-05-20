@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from .models import User, Query
 
 # ------------------- Static Pages -------------------
@@ -257,7 +258,6 @@ def allquery(request, pk):
 # ------------------- Edit Query -------------------
 
 
-
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Query, User
@@ -307,7 +307,7 @@ def delete_query(request, pk, it):
 
 
 
-# ------------------- Update Profile -------------------
+# ------------------- Update Profile form -------------------
 
 def update(request, pk):
     user = User.objects.get(id=pk)
@@ -328,3 +328,5 @@ def update(request, pk):
             'profile_image': user.profile_pic
         }
         return render(request, 'dashboard.html', {'msg': msg, 'user':databreak})
+
+

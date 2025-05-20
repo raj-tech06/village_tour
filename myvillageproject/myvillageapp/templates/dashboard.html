@@ -1,75 +1,162 @@
-{% extends 'common.html' %}
-{% load static %}
-
-{% block css %}
-<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
-{% endblock css %}
-
-{% block content %}
+{% extends 'common.html' %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+{% endblock css %} {% block content %}
 <div class="container mt-5">
   <div class="row">
-
     <!-- LEFT: Profile Section -->
     <div class="col-md-4">
-      <div class="profile-box shadow-sm p-4 rounded-3" style="border: 2px solid #4CAF50; background-color: #f9f9f9; height: auto; text-align: center;">
+      <div
+        class="profile-box shadow-sm p-4 rounded-3"
+        style="
+          border: 2px solid #4caf50;
+          background-color: #f9f9f9;
+          height: auto;
+          text-align: center;
+        "
+      >
+        {% if user %} {% if user.profile_image %}
+        <img
+          src="{{ user.profile_image.url }}"
+          alt="Profile Image"
+          style="
+            height: 120px;
+            width: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 2px solid #4caf50;
+          "
+        />
+        {% else %}
+        <img
+          src="{% static 'img/profile_defualt_img.jpg' %}"
+          alt="Default Profile"
+          style="
+            height: 120px;
+            width: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 2px solid #ccc;
+          "
+        />
+        {% endif %}
+
+        <span
+          style="font-size: 1.5rem; font-weight: bold; color: rgb(210, 20, 52)"
+          >{{ user.username }}</span
+        >
+        <hr />
+        <h4 style="font-size: 1rem; font-weight: bold; color: rgb(19, 67, 237)">
+          <span style="font-size: 1.2rem; color: #0f100f">Name:</span> {{
+          user.username }}
+        </h4>
+        <h4 style="font-size: 1rem; font-weight: bold; color: rgb(19, 67, 237)">
+          <span style="font-size: 1.2rem; color: #0f100f">Phone:</span> {{
+          user.phone }}
+        </h4>
+        <h4 style="font-size: 1rem; font-weight: bold; color: rgb(19, 67, 237)">
+          <span style="font-size: 1.2rem; color: #0f100f">Email:</span> {{
+          user.email }}
+        </h4>
+        <h4 style="font-size: 1rem; font-weight: bold; color: rgb(19, 67, 237)">
+          <span style="font-size: 1.2rem; color: #0f100f">Email:</span> {{
+          user.id }}
+        </h4>
+
+        <button
+          class="btn btn-success mt-3"
+          onclick="toggleForm()"
+          style="
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+          "
+        >
+          Update Profile
+        </button>
         {% if user %}
-          {% if user.profile_image %}
-            <img src="{{ user.profile_image.url }}" alt="Profile Image" style="height: 120px; width: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #4CAF50;">
-          {% else %}
-            <img src="{% static 'img/profile_defualt_img.jpg' %}" alt="Default Profile" style="height: 120px; width: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #ccc;">
-          {% endif %}
-
-          <span style="font-size: 1.5rem; font-weight: bold; color:rgb(210, 20, 52);">{{ user.username }}</span>
-          <hr>
-          <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; color: #0f100f;">Name:</span> {{ user.username }}</h4>
-          <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; color: #0f100f;">Phone:</span> {{ user.phone }}</h4>
-          <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; color: #0f100f;">Email:</span> {{ user.email }}</h4>
-          <h4 style="font-size: 1rem; font-weight: bold; color:rgb(19, 67, 237);"><span style="font-size: 1.2rem; color: #0f100f;">Email:</span> {{ user.id }}</h4>
-
-          <button class="btn btn-success mt-3" onclick="toggleForm()" style="font-size: 1rem; padding: 10px 20px; border-radius: 25px; background: linear-gradient(to right, #ff7e5f, #feb47b);">
-            Update Profile
-          </button>
-         {% if user %}
-          <a href="{% url 'allquery' pk=user.id %}" class="btn btn-success mt-3" style="font-size: 1rem; padding: 10px 20px; border-radius: 25px; background: linear-gradient(to right, #ff7e5f, #feb47b);">
-            All Query
-          </a>
-        {% endif %}
-        {% endif %}
+        <a
+          href="{% url 'allquery' pk=user.id %}"
+          class="btn btn-success mt-3"
+          style="
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+          "
+        >
+          All Query
+        </a>
+        {% endif %} {% endif %}
       </div>
     </div>
 
     <!-- RIGHT: Query Form / Edit Form / Query Table / Update Form -->
     <div class="col-md-8">
-{% if editquery %}
-  <!-- Edit Form -->
-  <form action="{% url 'edit_query' pk=user.id it=editquery.id %}" method="POST" enctype="multipart/form-data" class="mb-4 mt-3">
-    {% csrf_token %}
-    <div class="mb-3">
-      <label for="query" class="form-label">Query</label>
-      <textarea class="form-control" id="query" rows="3" placeholder="Enter your query" name="query">{{ editquery.query }}</textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Update Query</button>
-  </form>
-{% elif user.id %}
-  <!-- Query Form -->
-  <form action="{% url 'query' pk=user.id %}" method="POST" enctype="multipart/form-data" class="mb-4 mt-3">
-    {% csrf_token %}
-    <div class="mb-3">
-      <label for="query" class="form-label">Query</label>
-      <textarea class="form-control" id="query" rows="3" placeholder="Enter your query" name="query"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit Query</button>
-  </form>
-{% endif %}
-
+      {% if editquery %}
+      <!-- Edit Form -->
+      <form
+        action="{% url 'edit_query' pk=user.id it=editquery.id %}"
+        method="POST"
+        enctype="multipart/form-data"
+        class="mb-4 mt-3"
+      >
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="query" class="form-label">Query</label>
+          <textarea
+            class="form-control"
+            id="query"
+            rows="3"
+            placeholder="Enter your query"
+            name="query"
+          >
+{{ editquery.query }}</textarea
+          >
+        </div>
+        <button type="submit" class="btn btn-primary">Update Query</button>
+      </form>
+      {% elif user.id %}
+      <!-- Query Form -->
+      <form
+        action="{% url 'query' pk=user.id %}"
+        method="POST"
+        enctype="multipart/form-data"
+        class="mb-4 mt-3"
+      >
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="query" class="form-label">Query</label>
+          <textarea
+            class="form-control"
+            id="query"
+            rows="3"
+            placeholder="Enter your query"
+            name="query"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Query</button>
+      </form>
+      {% endif %}
 
       <!-- Query Table -->
       {% if query %}
-      <a class="btn btn-success mt-3" onclick="Querytoggle()" style="font-size: 1rem; padding: 10px 20px; border-radius: 25px; background: linear-gradient(to right, #ff7e5f, #feb47b);">
+      <a
+        class="btn btn-success mt-3"
+        onclick="Querytoggle()"
+        style="
+          font-size: 1rem;
+          padding: 10px 20px;
+          border-radius: 25px;
+          background: linear-gradient(to right, #ff7e5f, #feb47b);
+        "
+      >
         Show Query
       </a>
 
-      <table class="table table-striped mt-4" id="Query" style="display: none;">
+      <table class="table table-striped mt-4" id="Query" style="display: none">
         <thead>
           <tr>
             <th>S.no</th>
@@ -87,10 +174,23 @@
             <td>{{ i.name }}</td>
             <td>{{ i.email }}</td>
             <td>{{ i.query }}</td>
-            <td><a href="{% url 'edit_query' pk=user.id it=i.id %}">Edit</a></td>
-            <td><a href="{% url 'delete_query' pk=user.id it=i.id %}"onclick="return confirm('Are you sure you want to delete this query?')">Delete</a></td>
-            {% comment %} <a href="{% url 'delete_query' pk=user.id it=editquery.id %}" onclick="return confirm('Are you sure you want to delete this query?')">Delete</a> {% endcomment %}
-
+            <td>
+              <a href="{% url 'edit_query' pk=user.id it=i.id %}">Edit</a>
+            </td>
+            <td>
+              <a
+                href="{% url 'delete_query' pk=user.id it=i.id %}"
+                onclick="return confirm('Are you sure you want to delete this query?')"
+                >Delete</a
+              >
+            </td>
+            {% comment %}
+            <a
+              href="{% url 'delete_query' pk=user.id it=editquery.id %}"
+              onclick="return confirm('Are you sure you want to delete this query?')"
+              >Delete</a
+            >
+            {% endcomment %}
           </tr>
           {% endfor %}
         </tbody>
@@ -98,47 +198,86 @@
       {% endif %}
 
       <!-- Update Form -->
-      <div id="updateForm" class="update-form mt-4" style="display: none;">
+      <div id="updateForm" class="update-form mt-4" style="display: none">
         <h4 class="mb-3">Update Your Profile</h4>
-        <form action="{% url 'update' user.id %}" method="POST" enctype="multipart/form-data">
+        <form
+          action="{% url 'update' user.id %}"
+          method="POST"
+          enctype="multipart/form-data"
+        >
           {% csrf_token %}
           <div class="mb-3">
             <label for="profile_image" class="form-label">Profile Image</label>
-            <input type="file" class="form-control" id="profile_image" name="profile_image" accept="image/*">
+            <input
+              type="file"
+              class="form-control"
+              id="profile_image"
+              name="profile_image"
+              accept="image/*"
+            />
           </div>
           <div class="mb-3">
             <label for="name" class="form-label">Full Name</label>
-            <input type="text" class="form-control" id="name" name="name" value="{{ user.username }}">
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              value="{{ user.username }}"
+            />
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              value="{{ user.email }}"
+            />
           </div>
           <div class="mb-3">
             <label for="phone" class="form-label">Phone Number</label>
-            <input type="tel" class="form-control" id="phone" name="phone" value="{{ user.phone }}">
+            <input
+              type="tel"
+              class="form-control"
+              id="phone"
+              name="phone"
+              value="{{ user.phone }}"
+            />
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Change Password</label>
-            <input type="password" class="form-control" id="password" name="password" value="{{ user.password }}">
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              value="{{ user.password }}"
+            />
           </div>
           <button type="submit" class="btn btn-success">Update Changes</button>
         </form>
       </div>
-
     </div>
   </div>
 </div>
 
 <script>
   function toggleForm() {
-    const form = document.getElementById('updateForm');
-    form.style.display = form.style.display === 'none' || form.style.display === '' ? 'block' : 'none';
+    const form = document.getElementById("updateForm");
+    form.style.display =
+      form.style.display === "none" || form.style.display === ""
+        ? "block"
+        : "none";
   }
 
   function Querytoggle() {
-    const queryTable = document.getElementById('Query');
-    queryTable.style.display = queryTable.style.display === 'none' || queryTable.style.display === '' ? 'table' : 'none';
+    const queryTable = document.getElementById("Query");
+    queryTable.style.display =
+      queryTable.style.display === "none" || queryTable.style.display === ""
+        ? "table"
+        : "none";
   }
 </script>
 {% endblock %}
