@@ -184,13 +184,13 @@
                 >Delete</a
               >
             </td>
-            {% comment %}
+            
             <a
               href="{% url 'delete_query' pk=user.id it=editquery.id %}"
               onclick="return confirm('Are you sure you want to delete this query?')"
               >Delete</a
             >
-            {% endcomment %}
+           
           </tr>
           {% endfor %}
         </tbody>
