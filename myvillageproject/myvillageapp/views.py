@@ -39,8 +39,7 @@ def about1(request, pk):
 # ------------------- Dashboard -------------------
 
 def dashboard(request):
-    msg = 'login 1st!'
-    return render(request, 'dashboard.html', {'msg': msg})
+    return render(request, 'dashboard.html')
 
 def dashboard1(request, pk):
     user = User.objects.get(id=pk)
@@ -244,6 +243,7 @@ def query(request, pk):
 
 def allquery(request, pk):
     user = User.objects.get(id=pk)
+    print(user.id)
     databreak = {
         'id': user.id,
         'username': user.username,
