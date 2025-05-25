@@ -295,7 +295,7 @@ def delete_query(request, pk, it):
         'phone': userdata.phone,
         'profile_image': userdata.profile_pic
     }
-
+    
     query = Query.objects.get(id=it)
     query.delete()
 
