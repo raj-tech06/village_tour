@@ -30,8 +30,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
-    path('home1/<int:pk>', views.home1, name='home1'),
+    path('', views.village_list, name='village_list'),
+    path('village_list1/<int:pk>', views.village_list1, name='village_list1'),
     path('about', views.about, name='about'),
     path('about1/<int:pk>', views.about1, name='about1'),
     path('register/', views.register, name='register'),
@@ -55,5 +55,6 @@ urlpatterns = [
     path('allquery/<int:pk>', views.allquery, name='allquery'),
     path('edit_query/<int:pk>/<int:it>/', views.edit_query, name='edit_query'),
     path('delete_query/<int:pk>/<int:it>/', views.delete_query, name='delete_query'),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

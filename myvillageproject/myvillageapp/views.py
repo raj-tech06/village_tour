@@ -4,10 +4,31 @@ from .models import User, Query
 
 # ------------------- Static Pages -------------------
 
-def home(request):
-    return render(request, 'home.html')
 
-def home1(request, pk):
+from django.db.models import Q
+
+from .models import Village
+
+def village_list(request):
+    query = request.GET.get('q')
+    print('hello')
+    if query:
+        villages = Village.objects.filter(
+            Q(name__icontains=query) |
+            Q(district__icontains=query) |
+            Q(description__icontains=query) |
+            Q(category__icontains=query) |
+            Q(price__icontains=query)
+        )
+       
+        return render(request, 'home.html', {'villages': villages, 'query': query})
+    else:
+        villages = Village.objects.all()
+        return render(request, 'home.html', {'villages': villages})
+    
+
+
+def village_list1(request, pk):
     user = User.objects.get(id=pk)
     databreak = {
         'id': user.id,
@@ -17,7 +38,23 @@ def home1(request, pk):
         'password': user.password
     }
     msg = 'successfully logged in'
-    return render(request, 'home.html', {'msg': msg, 'user': databreak})
+
+    query = request.GET.get('q')
+    print('hello')
+    if query:
+        villages = Village.objects.filter(
+            Q(name__icontains=query) |
+            Q(district__icontains=query) |
+            Q(description__icontains=query) |
+            Q(category__icontains=query) |
+            Q(price__icontains=query)
+        )
+        
+        return render(request, 'home.html', {'villages': villages, 'query': query,'msg': msg, 'user': databreak})
+    else:
+        villages = Village.objects.all()
+        return render(request, 'home.html', {'villages': villages, 'user': databreak})
+   
 
 # ------------------- About -------------------
 
@@ -129,6 +166,16 @@ def registerdata(req):
         if len(Uname) < 6:
             msg = 'please enter your full name'
             return render(req, 'register.html', {'msg': msg})
+
+
+        for i in range(0,10):
+            if str(i) in Uname:
+                msg = 'name should not contain numbers'
+                return render(req, 'register.html', {'msg': msg})  
+
+        if len(phone) != 10:
+            msg = 'please enter a valid phone number'
+            return render(req, 'register.html', {'msg': msg})                  
 
         if '@' not in Eml or '.' not in Eml or '@.' in Eml or '.@' in Eml:
             msg = 'please enter a valid email'
@@ -323,5 +370,7 @@ def update(request, pk):
             'profile_image': user.profile_pic
         }
         return render(request, 'dashboard.html', {'msg': msg, 'user':databreak})
+
+
 
 
