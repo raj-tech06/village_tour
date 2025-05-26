@@ -302,11 +302,6 @@ def delete_query(request, pk, it):
     return render(request, 'dashboard.html', {'user': databreak})
 
 
-
-
-
-
-
 # ------------------- Update Profile form -------------------
 
 def update(request, pk):

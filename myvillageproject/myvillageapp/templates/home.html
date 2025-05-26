@@ -9,95 +9,7 @@
 
 {% block content %}
 
-<!-- <style>
-  /* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-/* Body Styling */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f9f9f9;
-  color: #333;
-  line-height: 1.6;
-}
-
-/* Container for the tours section */
-.container-tour {
-  padding: 40px 20px;
-  max-width: 1200px;
-  margin: auto;
-}
-
-.container-tour h2 {
-  font-size: 2.5rem;
-  text-align: center;
-  margin-bottom: 40px;
-  color: #333;
-}
-
-/* Grid layout */
-.tour-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-}
-
-/* Tour card styling */
-.tour-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-}
-
-.tour-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.tour-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.tour-card-content {
-  padding: 20px;
-  text-align: center;
-}
-
-.tour-card-content h3 {
-  font-size: 1.5rem;
-  color: #007b5e;
-  margin-bottom: 10px;
-}
-
-.tour-card-content p {
-  font-size: 1rem;
-  color: #555;
-}
-
-/* Responsive Tweaks */
-@media (max-width: 768px) {
-  .container-tour h2 {
-    font-size: 2rem;
-  }
-
-  .tour-card-content h3 {
-    font-size: 1.3rem;
-  }
-
-  .tour-card-content p {
-    font-size: 0.95rem;
-  }
-}
-
-</style> -->
 
 <h1>Villages of Madhya Pradesh</h1>
  
@@ -115,6 +27,8 @@ body {
           <p class="text-muted mb-2">1 hr 10 min (49.0 km)  <span class="fw-semibold text-dark">₹1200</span></p>
           <p class="card-text text-secondary small">विशेषता: यह गांव भारत का पहला "क्राफ्ट हैंडलूम टूरिज्म विलेज" है, जहां 550 से अधिक हथकरघे हैं।</p>
           <a href="#" class="btn btn-outline-success w-100 rounded-pill">View Details</a>
+          {% comment %} <a href="{% url 'village_detail' village.id %}" class="btn btn-primary">View Details</a> {% endcomment %}
+
         </div>
       </div>
     </div>
@@ -130,7 +44,7 @@ body {
         <div class="card-body">
           <h5 class="card-title fw-bold text-success">सावरवानी(जिला:छिंदवाड़ा)</h5>
           <p class="text-muted mb-2">3 Days, 2 Nights – <span class="fw-semibold text-dark">₹3,999</span></p>
-          <p class="card-text text-secondary small">Explore farming, pottery, and rural cultural events. Live the simple life in the heart of the village.</p>
+          <p class="card-text text-secondary small">खेती, मिट्टी के बर्तन बनाने और ग्रामीण सांस्कृतिक कार्यक्रमों का आनंद लें। गांव के बीचों-बीच सादा जीवन जियें।</p>
           <a href="#" class="btn btn-outline-success w-100 rounded-pill">View Details</a>
         </div>
       </div>
@@ -146,7 +60,9 @@ body {
         <div class="card-body">
           <h5 class="card-title fw-bold text-success">लाडपुरा खास (जिला: निवाड़ी)</h5>
           <p class="text-muted mb-2">1 Day – <span class="fw-semibold text-dark">₹1,599</span></p>
-          <p class="card-text text-secondary small">Learn about organic farming, harvest fresh produce, and enjoy a farm-to-table meal with the locals.</p>
+          <p class="card-text text-secondary small">
+           जैविक खेती के बारे में जानें, ताजा उपज की कटाई करें, और स्थानीय लोगों के साथ खेत से मेज तक भोजन का आनंद लें।
+          </p>
           <a href="#" class="btn btn-outline-success w-100 rounded-pill">View Details</a>
         </div>
       </div>
@@ -162,7 +78,7 @@ body {
         <div class="card-body">
           <h5 class="card-title fw-bold text-success">मडला (जिला:पन्ना)</h5>
           <p class="text-muted mb-2">2 Days, 1 Night – <span class="fw-semibold text-dark">₹3,299</span></p>
-          <p class="card-text text-secondary small">Explore local craft villages, learn about traditional weaving, pottery, and make your own handmade souvenirs.</p>
+          <p class="card-text text-secondary small">स्थानीय शिल्प गांवों का अन्वेषण करें, पारंपरिक बुनाई, मिट्टी के बर्तन बनाने के बारे में जानें, और अपने खुद के हस्तनिर्मित उपहार बनाएं।</p>
           <a href="#" class="btn btn-outline-success w-100 rounded-pill">View Details</a>
         </div>
       </div>
@@ -178,7 +94,7 @@ body {
         <div class="card-body">
           <h5 class="card-title fw-bold text-success">खोखरा(जिला:सीधी)</h5>
           <p class="text-muted mb-2">2 Days, 1 Night – <span class="fw-semibold text-dark">₹2,899</span></p>
-          <p class="card-text text-secondary small">Indulge in authentic village cuisine, prepared with fresh local ingredients, and served in a traditional rural setting.</p>
+          <p class="card-text text-secondary small">नदी के किनारे नाव की सवारी, तटों और आस-पास के ग्रामीण क्षेत्रों का अन्वेषण करें, और शांतिपूर्ण प्रकृति का आनंद लें।</p>
           <a href="#" class="btn btn-outline-success w-100 rounded-pill">View Details</a>
         </div>
       </div>
@@ -194,7 +110,7 @@ body {
         <div class="card-body">
           <h5 class="card-title fw-bold text-success">चंदई (जिला: डिंडोरी)</h5>
           <p class="text-muted mb-2">3 Days, 2 Nights – <span class="fw-semibold text-dark">₹4,499</span></p>
-          <p class="card-text text-secondary small">A scenic trek through the lush forest surrounding the village, with local guides and nature walks.</p>
+          <p class="card-text text-secondary small">गांव के चारों ओर हरे-भरे जंगलों के माध्यम से एक सुरम्य ट्रेक, स्थानीय गाइडों और प्रकृति की सैर के साथ।</p>
           <a href="#" class="btn btn-outline-success w-100 rounded-pill">View Details</a>
         </div>
       </div>
@@ -210,7 +126,7 @@ body {
         <div class="card-body">
           <h5 class="card-title fw-bold text-success">बघुवार(जिला:नरसिंहपुर)</h5>
           <p class="text-muted mb-2">2 Days, 1 Night – <span class="fw-semibold text-dark">₹2,899</span></p>
-          <p class="card-text text-secondary small">Explore ancient temples, historic sites, and learn the fascinating history of the village.</p>
+          <p class="card-text text-secondary small">प्राचीन मंदिरों, ऐतिहासिक स्थलों का अन्वेषण करें, और गांव के दिलचस्प इतिहास के बारे में जानें।</p>
           <a href="#" class="btn btn-outline-success w-100 rounded-pill">View Details</a>
         </div>
       </div>
@@ -226,7 +142,7 @@ body {
         <div class="card-body">
           <h5 class="card-title fw-bold text-success">खारी (जिला: सीहोर)</h5>
           <p class="text-muted mb-2">3 Days, 2 Nights – <span class="fw-semibold text-dark">₹4,199</span></p>
-          <p class="card-text text-secondary small">Boat ride along the river, explore the banks and nearby rural areas, enjoy peaceful nature.</p>
+          <p class="card-text text-secondary small">प्रामाणिक ग्रामीण व्यंजनों का आनंद लें, जो ताजे स्थानीय सामग्री के साथ तैयार किए जाते हैं, और पारंपरिक ग्रामीण सेटिंग में परोसे जाते हैं।</p>
           <a href="#" class="btn btn-outline-success w-100 rounded-pill">View Details</a>
         </div>
       </div>
@@ -244,7 +160,7 @@ body {
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <strong>Our village has a rich historical background</strong> dating back several centuries. Founded by local tribes, it has evolved through generations while preserving its cultural essence. Ancient temples, traditional homes, and folk tales passed down from elders keep the village's legacy alive.
+        <strong>Our village has a rich historical background</strong>कई शताब्दियों पहले की बात है। स्थानीय जनजातियों द्वारा स्थापित, यह अपने सांस्कृतिक सार को संरक्षित करते हुए पीढ़ियों से विकसित हुआ है। प्राचीन मंदिर, पारंपरिक घर और बुजुर्गों से प्राप्त लोक कथाएँ गाँव की विरासत को जीवित रखती हैं।
       </div>
     </div>
   </div>
@@ -256,7 +172,8 @@ body {
     </h2>
     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <strong>Visitors are drawn to our natural and cultural spots.</strong> Key attractions include the serene village lake, ancient temples, and lush green fields. The weekly haat bazaar (market) is a colorful hub of local produce, crafts, and community life.
+        <strong>Visitors are drawn to our natural and cultural spots.</strong> मुख्य आकर्षणों में शांत गांव की झील, प्राचीन मंदिर और हरे-भरे खेत शामिल हैं। साप्ताहिक हाट बाजार (बाजार) स्थानीय उपज, शिल्प और सामुदायिक जीवन का एक रंगीन केंद्र है।
+
       </div>
     </div>
   </div>
@@ -268,7 +185,7 @@ body {
     </h2>
     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <strong>The village celebrates many vibrant festivals</strong> such as Makar Sankranti, Holi, Diwali, and local fairs (melas). Folk music, traditional dances like Ghoomar and Bhavai, and community feasts are central to our cultural identity.
+        <strong>The village celebrates many vibrant festivals</strong> जैसे मकर संक्रांति, होली, दीपावली, और स्थानीय मेले। लोक संगीत, पारंपरिक नृत्य जैसे घूमर और भवई, और सामुदायिक भोज हमारे सांस्कृतिक पहचान के केंद्रीय तत्व हैं।
       </div>
     </div>
   </div>
@@ -290,7 +207,7 @@ body {
         <div class="card-body">
           <h5 class="card-title fw-bold text-success">मितावली (जिला:मुरैना)</h5>
           <p class="text-muted mb-2">3 Days, 2 Nights – <span class="fw-semibold text-dark">₹5,499</span></p>
-          <p class="card-text text-secondary small">Join the local festival, enjoy traditional music, dance, and food during this vibrant celebration.</p>
+          <p class="card-text text-secondary small">स्थानीय त्योहार में शामिल हों, इस जीवंत उत्सव के दौरान पारंपरिक संगीत, नृत्य और भोजन का आनंद लें।</p>
           <a href="#" class="btn btn-outline-success w-100 rounded-pill">View Details</a>
         </div>
       </div>
@@ -306,7 +223,7 @@ body {
         <div class="card-body">
           <h5 class="card-title fw-bold text-success">देवगढ़ (जिला:छिंदवाड़ा)</h5>
           <p class="text-muted mb-2">2 Days, 1 Night – <span class="fw-semibold text-dark">₹3,199</span></p>
-          <p class="card-text text-secondary small">Experience the craft of local artisans, from painting to weaving, and participate in their workshops.</p>
+          <p class="card-text text-secondary small">स्थानीय कारीगरों की कला का अनुभव करें, चित्रकला से लेकर बुनाई तक, और उनके कार्यशालाओं में भाग लें।</p>
           <a href="#" class="btn btn-outline-success w-100 rounded-pill">View Details</a>
         </div>
       </div>
@@ -322,7 +239,7 @@ body {
         <div class="card-body">
           <h5 class="card-title fw-bold text-success">कोटरा (जिला:राजगढ़)</h5>
           <p class="text-muted mb-2">1 Day – <span class="fw-semibold text-dark">₹1,499</span></p>
-          <p class="card-text text-secondary small">A day tour of artisan villages, explore local art forms, pottery, painting, and even create something of your own.</p>
+          <p class="card-text text-secondary small">स्थानीय शिल्प गांवों का अन्वेषण करें, पारंपरिक बुनाई, मिट्टी के बर्तन बनाने के बारे में जानें, और अपने खुद के हस्तनिर्मित उपहार बनाएं।</p>
           <a href="#" class="btn btn-outline-success w-100 rounded-pill">View Details</a>
         </div>
       </div>
@@ -338,7 +255,7 @@ body {
         <div class="card-body">
           <h5 class="card-title fw-bold text-success">धामना (जिला:छतरपुर)</h5>
           <p class="text-muted mb-2">2 Days, 1 Night – <span class="fw-semibold text-dark">₹2,799</span></p>
-          <p class="card-text text-secondary small">Live in nature, take hikes through the village's serene landscapes, and experience rural life at its best.</p>
+          <p class="card-text text-secondary small">प्रकृति में जीवन, गांव के शांतिपूर्ण परिदृश्यों के माध्यम से ट्रेकिंग करें, और ग्रामीण जीवन का सर्वोत्तम अनुभव करें।</p>
           <a href="#" class="btn btn-outline-success w-100 rounded-pill">View Details</a>
         </div>
       </div>
@@ -354,7 +271,7 @@ body {
         <div class="card-body">
           <h5 class="card-title fw-bold text-success">नरवर (जिला:शिवपुरी)</h5>
           <p class="text-muted mb-2">2 Days, 1 Night – <span class="fw-semibold text-dark">₹2,999</span></p>
-          <p class="card-text text-secondary small">Visit villages renowned for their handcrafts, pottery, and textiles. Create your own souvenir in a hands-on workshop.</p>
+          <p class="card-text text-secondary small">हस्तशिल्प, मिट्टी के बर्तन और वस्त्रों के लिए प्रसिद्ध गांवों का दौरा करें। एक व्यावहारिक कार्यशाला में अपने खुद के स्मारिका बनाएं।</p>
           <a href="#" class="btn btn-outline-success w-100 rounded-pill">View Details</a>
         </div>
       </div>
@@ -368,9 +285,9 @@ body {
           <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">Rural Exploration</span>
         </div>
         <div class="card-body">
-          <h5 class="card-title fw-bold text-success">नेमावर (जिला:देवास)r</h5>
+          <h5 class="card-title fw-bold text-success">नेमावर (जिला:देवास)</h5>
           <p class="text-muted mb-2">1 Day – <span class="fw-semibold text-dark">₹1,799</span></p>
-          <p class="card-text text-secondary small">Explore rural life, meet local farmers, and experience a day in the life of an Indian village.</p>
+          <p class="card-text text-secondary small">ग्रामीण जीवन का अन्वेषण करें, स्थानीय किसानों से मिलें, और एक भारतीय गांव के जीवन का अनुभव करें।</p>
           <a href="#" class="btn btn-outline-success w-100 rounded-pill">View Details</a>
         </div>
       </div>

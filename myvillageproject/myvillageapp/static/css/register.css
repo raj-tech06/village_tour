@@ -1,7 +1,11 @@
 /* Centered container spacing */
 .container1 {
+    margin-left: 30%;
+    justify-items: center;
+    /* text-align: center; */
+    margin-top: 0%;
     max-width: 400px;
-    margin: auto;
+    /* margin: auto; */
     background: #f9f9f9;
     padding: 30px;
     border-radius: 10px;
@@ -9,23 +13,30 @@
 }
 
 /* Header styling */
-h2 {
+.text-center {
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-top: -10%;
+    /* margin-bottom: 20px; */
 }
+
 
 /* Spacing for input fields */
 .form-label {
     font-weight: 500;
+    margin-top: -7%;
+    font-size: small;
+
 }
 
 input.form-control {
-    padding: 10px;
-    font-size: 16px;
+    margin-top: -5%;
+    padding: 8px;
+    font-size: 14px;
 }
 
 /* Button styling */
 .btn-success {
+    margin-top: -5%;
     padding: 10px;
     font-size: 18px;
     border-radius: 5px;
@@ -33,7 +44,7 @@ input.form-control {
 
 /* Alert container spacing */
 .alert-container {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 /* Alert styles */

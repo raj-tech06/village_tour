@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<div class="container1 mt-5">
+<div class="container1">
     <h2 class="text-center">Register</h2>
 
 
@@ -15,8 +15,8 @@
     <form  action="{% url 'registerdata' %}" method="POST">
         {% csrf_token %}
 
-         <h4 style="color:red; text-align:center"> {{msg}} </h4>
-    
+         <h5 style="color:red; text-align:center"> {{msg}} </h5>
+    <hr>
            
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
@@ -46,8 +46,8 @@
 
 
         <button type="submit" class="btn btn-success w-100">Register</button>
+   <hr class="hr2">
     </form>
-
     <div class="mt-3 text-center">
         <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
     </div>

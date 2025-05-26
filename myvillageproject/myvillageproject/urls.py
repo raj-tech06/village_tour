@@ -49,15 +49,11 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('profile1/<int:pk>', views.profile1, name='profile1'),
     path('update/<int:pk>', views.update, name='update'),
+    
     # -------------query working----------------    
     path('query/<int:pk>', views.query, name='query'),
     path('allquery/<int:pk>', views.allquery, name='allquery'),
     path('edit_query/<int:pk>/<int:it>/', views.edit_query, name='edit_query'),
     path('delete_query/<int:pk>/<int:it>/', views.delete_query, name='delete_query'),
-
-
-    
-
-
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,9 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ village.name }}</h2>
+    <p>{{ village.description }}</p>
+    <img src="{{ village.image.url }}" alt="{{ village.name }}" class="img-fluid mt-3">
+</div>
+{% endblock %}
