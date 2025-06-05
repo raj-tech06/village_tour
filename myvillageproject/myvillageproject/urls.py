@@ -55,6 +55,8 @@ urlpatterns = [
     path('allquery/<int:pk>', views.allquery, name='allquery'),
     path('edit_query/<int:pk>/<int:it>/', views.edit_query, name='edit_query'),
     path('delete_query/<int:pk>/<int:it>/', views.delete_query, name='delete_query'),
+    path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
+
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

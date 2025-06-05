@@ -27,7 +27,6 @@ def village_list(request):
         return render(request, 'home.html', {'villages': villages})
     
 
-
 def village_list1(request, pk):
     user = User.objects.get(id=pk)
     databreak = {
@@ -218,6 +217,92 @@ def logindata(request):
     if request.method == 'POST':
         Eml = request.POST.get('email')
         Pass1 = request.POST.get('password')
+
+        if Eml == 'admin@gmail.com' and Pass1 == 'admin@123':
+            request.session['is_admin'] = True
+            # Call admin_dashboard directly or redirect
+            return redirect('admin_dashboard')
+
+        user = User.objects.filter(email=Eml)
+        if user.exists():
+            user1 = user.first()
+            if user1.password == Pass1:
+                # User session set karna bhi zaroori hai agar login session maintain karna ho
+                request.session['user_id'] = user1.id
+                # normal user dashboard render karna
+                databreak = {
+                    'id': user1.id,
+                    'username': user1.username,
+                    'email': user1.email,
+                    'phone': user1.phone,
+                    'password': user1.password,
+                    'profile_image': user1.profile_pic
+                }
+                msg = 'successfully logged in'
+                return render(request, 'dashboard.html', {'msg': msg, 'user': databreak})
+            else:
+                msg = 'invalid password'
+                return render(request, 'login.html', {'msg': msg})
+        else:
+            msg = 'Email not registered'
+            return render(request, 'register.html', {'msg': msg})
+
+    else:
+        msg = 'please fill the form'
+        return render(request, 'login.html', {'msg': msg})
+
+
+
+# def logindata(request):
+    if request.method == 'POST':
+        Eml = request.POST.get('email')
+        Pass1 = request.POST.get('password')
+
+        # Static admin login check
+        if Eml == 'admin@gmail.com' and Pass1 == 'admin@123':
+            admin_data = {
+                'id': 0,
+                'username': 'Admin',
+                'email': Eml,
+                'phone': 'N/A',
+                'password': '********',
+                'profile_image': None
+            }
+            msg = 'Admin successfully logged in'
+            return render(request,  'admin_dashboard.html', {'msg': msg, 'user': admin_data})
+
+        # Normal user login
+        user = User.objects.filter(email=Eml)
+        if user.exists():
+            user1 = user.first()
+            if user1.password == Pass1:
+                databreak = {
+                    'id': user1.id,
+                    'username': user1.username,
+                    'email': user1.email,
+                    'phone': user1.phone,
+                    'password': user1.password,
+                    'profile_image': user1.profile_pic
+                }
+                msg = 'Successfully logged in'
+                return render(request, 'dashboard.html', {'msg': msg, 'user': databreak})
+            else:
+                msg = 'Invalid password'
+                return render(request, 'login.html', {'msg': msg})
+        else:
+            msg = 'Email not registered'
+            return render(request, 'register.html', {'msg': msg})
+
+    else:
+        msg = 'Please fill the form'
+        return render(request, 'login.html', {'msg': msg})#
+# ------------------- Login with Static Admin -------------------
+    
+
+#def logindata(request):
+    if request.method == 'POST':
+        Eml = request.POST.get('email')
+        Pass1 = request.POST.get('password')
         user = User.objects.filter(email=Eml)
 
         if user.exists():
@@ -242,7 +327,7 @@ def logindata(request):
 
     else:
         msg = 'please fill the form'
-        return render(request, 'login.html', {'msg': msg})
+        return render(request, 'login.html', {'msg': msg})#
 
 # ------------------- Profile -------------------
 
@@ -371,6 +456,30 @@ def update(request, pk):
         }
         return render(request, 'dashboard.html', {'msg': msg, 'user':databreak})
 
+#==========================new code====================================
+def admin_dashboard(request):
+    # Example session check (agar session use karte ho)
+    if not request.session.get('is_admin'):
+        return redirect('login')
 
+    users = User.objects.all()
+    selected_section = None
+    if request.method == 'POST':
+        selected_section = request.POST.get('action')
+    admin_data = {
+        'id': 0,
+        'username': 'Admin',
+        'email': 'admin@gmail.com',
+        'phone': 'N/A',
+        'password': '********',
+        'profile_image': None
+    }
+    return render(request, 'admin_dashboard.html', {
+        'user': admin_data,
+        'users': users,
+        'selected_section': selected_section
+    })
 
-
+def logout_view(request):
+    request.session.flush()  # clears all session data
+    return redirect('login')

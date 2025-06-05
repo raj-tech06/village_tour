@@ -1,0 +1,47 @@
+{% extends 'common.html' %}
+{% block content %}
+<div style="padding: 30px;">
+  <h1>Welcome, Admin 👩‍💼</h1>
+  <p>You are logged in as <strong>{{ user.username }}</strong> ({{ user.email }})</p>
+
+  <hr>
+
+  <!-- Form to choose section -->
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" name="action" value="view_users" style="padding:10px; margin-right:10px;">👥 View All Users</button>
+    {% comment %} <button  type="submit" name="action" value="add_user" style="padding:10px;">➕ Add New User</button> {% endcomment %}
+    <a href="{% url 'register' %}" style="padding:10px; margin-right:10px; background:#3498db; color:#fff; text-decoration:none; border-radius:5px;">➕ Add New User</a>
+    <a href="{% url 'village_list' %}" style="padding:10px; background:#e74c3c; color:#fff; text-decoration:none; border-radius:5px;">🚪 Logout</a>
+  </form>
+
+  <div style="margin-top: 30px;">
+    {% if selected_section == 'view_users' %}
+      <h2>All Registered Users</h2>
+      {% if users %}
+        <table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+          <tr>
+            <th>ID</th><th>Username</th><th>Email</th><th>Phone</th>
+          </tr>
+          {% for u in users %}
+          <tr>
+            <td>{{ u.id }}</td>
+            <td>{{ u.username }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.phone }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        <p>No users found.</p>
+      {% endif %}
+    {% elif selected_section == 'add_user' %}
+    {% comment %} <a href="{% url 'register' %}"></a> {% endcomment %}
+      <h2>Add New User (Coming Soon)</h2>
+      <p>This feature is under construction 👷‍♀️</p>
+    {% else %}
+      <p>Please select an action above.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
