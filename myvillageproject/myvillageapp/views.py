@@ -474,12 +474,15 @@ def admin_dashboard(request):
         'password': '********',
         'profile_image': None
     }
+ 
+
     return render(request, 'admin_dashboard.html', {
         'user': admin_data,
         'users': users,
         'selected_section': selected_section
+        
     })
 
-def logout_view(request):
+{% comment %} def logout_view(request):
     request.session.flush()  # clears all session data
-    return redirect('login')
+    return redirect('login') {% endcomment %}
