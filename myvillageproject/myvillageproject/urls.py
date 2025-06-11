@@ -56,6 +56,17 @@ urlpatterns = [
     path('edit_query/<int:pk>/<int:it>/', views.edit_query, name='edit_query'),
     path('delete_query/<int:pk>/<int:it>/', views.delete_query, name='delete_query'),
     path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
+    path('addcard1/<int:pk>/<int:it>/',views.addcard1,name='addcard1'),
+    path('addcard/<int:it>/',views.addcard,name='addcard'),
+    path('remove_from_cart1/<int:pk>/<int:it>/', views.remove_from_cart1, name='remove_from_cart1'),
+    path('remove_from_cart/<int:it>/', views.remove_from_cart, name='remove_from_cart'),
+
+    path('showcart1/<int:pk>/', views.showcart1, name='showcart1'),
+    path('showcart/', views.showcart, name='showcart'),
+
+    path('village/<int:it>/', views.village_detail, name='village_detail'),
+    path('village1/<int:pk>/<int:it>/', views.village_detail1, name='village_detail1'),
+
 
 
 

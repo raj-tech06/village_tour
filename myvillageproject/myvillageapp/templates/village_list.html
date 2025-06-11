@@ -21,10 +21,18 @@
         </div>
         <div class="card-body">
           <h5 class="card-title text-success fw-bold">{{ village.name }} (जिला: {{ village.district }})</h5>
-          <p class="text-muted mb-1">1 hr 10 min (49.0 km)  <span class="fw-semibold text-dark">₹1200</span></p>
+          <p class="text-muted mb-1">1 hr 10 min (49.0 km)  <span class="fw-semibold text-dark">{{village.price}}</span></p>
           {% comment %} <p class="text-muted mb-1">{{ village.price }}</p> {% endcomment %}
-          <p class="card-text text-secondary small">{{ village.description|truncatechars:100 }}</p>
-          <a href="#" class="btn btn-outline-success w-100 rounded-pill">View Details</a>
+          {% comment %} <p class="card-text text-secondary small">{{ village.description|truncatechars:100 }}</p> {% endcomment %}
+          <div class="d-grid gap-2" style="display: flex;">
+          {% if user.id %}
+          <a href="{% url 'village_detail1' pk=user.id it=village.id %}" class="btn btn-outline-success w-100 rounded-pill">View Details</a>
+          <a href="{% url 'addcard1' pk=user.id it=village.id %}" class="btn btn-outline-success w-100 rounded-pill">Add to Cart</a>
+          {% else %}
+          <a href="{% url 'village_detail' pk=village.id %}" class="btn btn-outline-success w-100 rounded-pill">View Details</a>
+          <a href="{% url 'addcard' it=village.id %}" class="btn btn-outline-success w-100 rounded-pill">Add to Cart</a>
+          {% endif %}
+          </div>
         </div>
       </div>
     </div>

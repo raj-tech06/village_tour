@@ -21,10 +21,10 @@ def village_list(request):
             Q(price__icontains=query)
         )
        
-        return render(request, 'home.html', {'villages': villages, 'query': query})
+        return render(request, 'village_list.html', {'villages': villages, 'query': query})
     else:
         villages = Village.objects.all()
-        return render(request, 'home.html', {'villages': villages})
+        return render(request, 'village_list.html', {'villages': villages})
     
 
 def village_list1(request, pk):
@@ -49,10 +49,10 @@ def village_list1(request, pk):
             Q(price__icontains=query)
         )
         
-        return render(request, 'home.html', {'villages': villages, 'query': query,'msg': msg, 'user': databreak})
+        return render(request, 'village_list.html', {'villages': villages, 'query': query,'msg': msg, 'user': databreak})
     else:
         villages = Village.objects.all()
-        return render(request, 'home.html', {'villages': villages, 'user': databreak})
+        return render(request, 'village_list.html', {'villages': villages, 'user': databreak})
    
 
 # ------------------- About -------------------
@@ -486,3 +486,182 @@ def admin_dashboard(request):
 def logout_view(request):
     request.session.flush()  # clears all session data
     return redirect('login')
+
+#==============================================
+
+def addcard1(request,pk,it):
+    user = User.objects.get(id=pk)
+    databreak = {
+        'id': user.id,
+        'username': user.username,
+        'email': user.email,
+        'password': user.password,
+        'phone': user.phone,
+        'profile_image': user.profile_pic
+    }
+    # print(pk)
+    cart = request.session.get('cart',[])
+    # print(cart)
+    if it in cart:
+        msg = "Item already in cart"
+        cart = request.session.get('cart',[])
+        print(cart)
+        cart_items = []
+        total = 0
+        for i in cart:
+          item = Village.objects.get(id=i)
+          total += int(''.join(filter(str.isdigit, item.price))) 
+          cart_items.append(item)
+
+        return render(request,'cartpage.html', {'cart_items': cart_items, 'total': total,'msg': msg, 'user': databreak})
+    else:
+        cart.append(it)
+        # print(cart)
+        request.session['cart']=cart
+        msg = "Item added to cart"
+        cart = request.session.get('cart',[])
+        cart_items = []
+        total = 0
+        for i in cart:
+          item = Village.objects.get(id=i)
+          total += int(''.join(filter(str.isdigit, item.price)))
+          cart_items.append(item)
+        return render(request,'cartpage.html', {'user': databreak,'cart_items': cart_items, 'total': total,'msg': msg,})
+
+       
+def remove_from_cart1(request, pk, it):
+    user = User.objects.get(id=pk)
+    databreak = {
+        'id': user.id,
+        'username': user.username,
+        'email': user.email,
+        'password': user.password,
+        'phone': user.phone,
+        'profile_image': user.profile_pic
+    }
+    
+    cart = request.session.get('cart', [])
+    if it in cart:
+        cart.remove(it)
+        request.session['cart'] = cart
+        msg = "Item removed from cart"
+    else:
+        msg = "Item not found in cart"
+
+    # Calculate total and prepare cart items
+    cart_items = []
+    total = 0
+    for i in cart:
+        item = Village.objects.get(id=i)
+        total += int(''.join(filter(str.isdigit, item.price)))
+        cart_items.append(item)
+
+    return render(request, 'cartpage.html', {'user': databreak, 'cart_items': cart_items, 'total': total, 'msg': msg})        
+
+
+#---------------------------------------------------
+        
+def addcard(request,it):
+    cart = request.session.get('cart',[])
+    # print(cart)
+    if it in cart:
+        msg = "Item already in cart"
+        cart = request.session.get('cart',[])
+        print(cart)
+        cart_items = []
+        total = 0
+        for i in cart:
+          item = Village.objects.get(id=i)
+          total += int(''.join(filter(str.isdigit, item.price)))
+          cart_items.append(item)
+
+        return render(request,'cartpage.html', {'cart_items': cart_items, 'total': total,'msg': msg})
+    else:
+        cart.append(it)
+        # print(cart)
+        request.session['cart']=cart
+        msg = "Item added to cart"
+        cart = request.session.get('cart',[])
+        cart_items = []
+        total = 0
+        for i in cart:
+          item = Village.objects.get(id=i)
+          total += int(''.join(filter(str.isdigit, item.price)))
+          cart_items.append(item)
+        return render(request,'cartpage.html', {'cart_items': cart_items, 'total': total,'msg': msg,})
+
+def remove_from_cart(request, it):
+    cart = request.session.get('cart', [])
+    if it in cart:
+        cart.remove(it)
+        request.session['cart'] = cart
+        msg = "Item removed from cart"
+    else:
+        msg = "Item not found in cart"
+
+    # Calculate total and prepare cart items
+    cart_items = []
+    total = 0
+    for i in cart:
+        item = Village.objects.get(id=i)
+        total += int(''.join(filter(str.isdigit, item.price)))
+        cart_items.append(item)
+
+    return render(request, 'cartpage.html', {'cart_items': cart_items, 'total': total, 'msg': msg})        
+
+
+
+
+def showcart(request):
+    cart = request.session.get('cart', [])
+    cart_items = []
+    total = 0
+    for i in cart:
+        item = Village.objects.get(id=i)
+        total += int(''.join(filter(str.isdigit, item.price)))
+        cart_items.append(item)
+    return render(request, 'cartpage.html', {'cart_items': cart_items, 'total': total})    
+
+def showcart1(request, pk):
+    user = User.objects.get(id=pk)
+    databreak = {
+        'id': user.id,
+        'username': user.username,
+        'email': user.email,
+        'password': user.password,
+        'phone': user.phone,
+        'profile_image': user.profile_pic
+    }
+    
+    cart = request.session.get('cart', [])
+    cart_items = []
+    total = 0
+    for i in cart:
+        item = Village.objects.get(id=i)
+        total += int(''.join(filter(str.isdigit, item.price)))
+        cart_items.append(item)
+
+    return render(request, 'cartpage.html', {'cart_items': cart_items, 'total': total, 'user': databreak})    
+
+    
+
+from django.shortcuts import render, get_object_or_404
+from .models import Village
+
+def village_detail(request, it):
+    village = get_object_or_404(Village,id=it)
+    return render(request, 'village_detail.html', {'village': village})
+
+def village_detail1(request, pk, it):
+    user = User.objects.get(id=pk)
+    databreak = {
+        'id': user.id,
+        'username': user.username,
+        'email': user.email,
+        'password': user.password,
+        'phone': user.phone,
+        'profile_image': user.profile_pic
+    }
+    
+    village = get_object_or_404(Village, pk=it)
+    return render(request, 'village_detail.html', {'village': village, 'user': databreak})    

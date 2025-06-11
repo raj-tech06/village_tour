@@ -1,0 +1,57 @@
+{% extends 'common.html' %}
+{% load static %}
+{% block content %}
+
+<h2 class="mb-4">🛒 Your Cart</h2>
+
+{% if msg %}
+  <div class="alert alert-info text-center text-danger">{{ msg }}</div>
+{% endif %}
+
+<div class="list-group">
+  {% for item in cart_items %}
+    <div class="list-group-item mb-2 shadow-sm">
+      <div class="d-flex">
+        <!-- Image -->
+        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="img-thumbnail me-3" style="width: 100px; height: 100px; object-fit: cover;">
+
+        <!-- Info Section -->
+        <div class="flex-grow-1">
+          <h5 class="mb-1">{{ item.name }}</h5>
+          <p class="mb-1"><strong>District:</strong> {{ item.district }}</p>
+          <p class="mb-1"><strong>Distance:</strong> {{ item.distance }}</p>
+          <p class="mb-1 text-muted">{{ item.description|truncatewords:15 }}</p>
+        </div>
+
+        <!-- Price Section -->
+        <div class="text-end" style="min-width: 100px;">
+          <p class="text-success fw-bold">{{ item.price }}</p>
+          {% if user.id %}
+          <form action="{% url 'remove_from_cart1' pk=user.id it=item.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+          </form>
+          {% else %}
+          <form action="{% url 'remove_from_cart' it=item.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+          </form>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p>Your cart is empty.</p>
+  {% endfor %}
+</div>
+
+<!-- Total Price aligned right -->
+<div class="d-flex justify-content-end mt-4">
+  <h4>Total: ₹{{ total }}</h4>
+</div>
+
+<!-- Back Button -->
+<a href="{% url 'village_list' %}" class="btn btn-primary mt-3">⬅ Back to Products</a>
+<a href="{% url 'village_list' %}" class="btn btn-primary mt-3 mx-0 px-5 float-end">💳 Payment</a>
+
+{% endblock %}
