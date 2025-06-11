@@ -483,6 +483,6 @@ def admin_dashboard(request):
         
     })
 
-{% comment %} def logout_view(request):
+def logout_view(request):
     request.session.flush()  # clears all session data
-    return redirect('login') {% endcomment %}
+    return redirect('login')
